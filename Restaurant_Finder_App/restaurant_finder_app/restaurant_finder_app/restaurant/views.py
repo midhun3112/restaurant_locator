@@ -12,6 +12,7 @@ def home_page_view(request):
 
 def restaurant_list_view(request, collection_id):
 	try:
+		print(collection_id)
 		collections = Collection.objects.get(pk=collection_id)
 	except Collection.DoesNotExist:
 		raise Http404("Collection does not exist")

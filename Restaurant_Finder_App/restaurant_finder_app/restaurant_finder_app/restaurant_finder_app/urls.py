@@ -20,8 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',include('restaurant.urls')),
-    url(r'^restaurant/',include('restaurant.urls')),
+    url(r'^',include('restaurant.urls')),
     url(r'^authentication/$', include('authentication.urls')),
 ]
 if settings.DEBUG is True:
