@@ -1,0 +1,59 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+
+	{% load static %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}" />
+	<script type="text/javascript" src="/static/home/js/click.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	</head>
+
+	<body>
+
+
+
+	{% if restaurant_list %}
+	   There are {{ restaurant_list|length }} hotels:
+	   {% for restaurant in restaurant_list %}
+
+	    <ul>
+
+	      <h1> {{ restaurant.restaurant_name }} </h1>
+
+	       <img src="{{ MEDIA_URL }}{{ restaurant.restaurant_image }}" height="222" width="222"/>
+	 
+	                  <li> {{ timings}} </li>
+
+	      {% with restaurant.restaurant_timing.weekday.all as working_days %}
+
+
+	         {% for working_day in working_days %}
+	              <li> {{ restaurant.weekday}} </li>
+	         {% endfor %}
+
+	      {% endwith %} 
+
+	      {% with restaurant.restaurant_timing.all as restaurant_timings %}
+	      
+	          {% for restaurant_timing in restaurant_timings %}
+	              <li> {{ restaurant_timing.start_time }} - {{ restaurant_timing.end_time }}</li>
+	          {% endfor %}
+
+	      {% endwith %} 
+
+	    </ul>
+
+	   {% endfor %}
+
+	   {% else %}
+	    
+	    There are no records in the system
+
+	{% endif %}
+
+	</body>
+
+	</html>
