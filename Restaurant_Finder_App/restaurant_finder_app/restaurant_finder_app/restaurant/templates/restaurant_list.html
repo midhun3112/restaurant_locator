@@ -25,24 +25,15 @@
 
 	       <img src="{{ MEDIA_URL }}{{ restaurant.restaurant_image }}" height="222" width="222"/>
 	 
-	                  <li> {{ timings}} </li>
-
-	      {% with restaurant.restaurant_timing.weekday.all as working_days %}
-
-
-	         {% for working_day in working_days %}
-	              <li> {{ restaurant.weekday}} </li>
-	         {% endfor %}
-
-	      {% endwith %} 
-
-	      {% with restaurant.restaurant_timing.all as restaurant_timings %}
+	        {% with restaurant.restaurant_timing.all as restaurant_timings %}
 	      
 	          {% for restaurant_timing in restaurant_timings %}
-	              <li> {{ restaurant_timing.start_time }} - {{ restaurant_timing.end_time }}</li>
+
+	            <li> {{ restaurant_timing.working_days}} :{{ restaurant_timing.start_time }} - {{ restaurant_timing.end_time }}</li>
+
 	          {% endfor %}
 
-	      {% endwith %} 
+	        {% endwith %} 
 
 	    </ul>
 
