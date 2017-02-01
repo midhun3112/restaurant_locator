@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load staticfiles %}
 
 {% block title %} Home {% endblock %}
@@ -15,6 +14,83 @@
 
 {% block content %}
 
+<div class="container">
+
+<div class="row">
+
+  <div class="col-md-8">
+  <h2 class="ui header">
+
+    <span class="segment_heading">Collections</span>
+    <span class="sub header">
+    <span class="segment_sub_heading">
+      Explore curated lists of top restaurants, cafes, pubs, and bars in and around Mumbai, based on  trends                               
+    </span>
+    </span>
+    
+    </h2>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- <div class="well" style="min-height:120px; min-width:320px;">2</div> -->
+                <div class="col-xs-4">
+                  <img src="{{ MEDIA_URL }}images/restaurant_pic/c90.png" class="img-rounded" alt="Cinque Terre" width="100" height="100"" />
+                </div>
+                <div class="col-xs-8">  
+                  <h3>Hello World</h3>
+                  <p style="font-size:10px; color:#03225C;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- <div class="well" style="min-height:120px; min-width:320px;">3</div> -->
+                <div class="col-xs-4">
+                  <img src="{{ MEDIA_URL }}images/restaurant_pic/c90.png" class="img-rounded" alt="Cinque Terre" width="100" height="100"" />
+                </div>
+                <div class="col-xs-8">  
+                  <h3>Hello World</h3>
+                  <p style="font-size:10px; color:#03225C;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- <div class="well" style="min-height:120px; min-width:320px;">4</div> -->
+                <div class="col-xs-4">
+                  <img src="{{ MEDIA_URL }}images/restaurant_pic/c90.png" class="img-rounded" alt="Cinque Terre" width="100" height="100"" />
+                </div>
+                <div class="col-xs-8">  
+                  <h3>Hello World</h3>
+                  <p style="font-size:10px; color:#03225C;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                </div>                
+            </div>
+            <div class="col-md-6">
+                <!-- <div class="well" style="min-height:120px; min-width:320px;">5</div> -->
+                <div class="col-xs-4">
+                  <img src="{{ MEDIA_URL }}images/restaurant_pic/c90.png" class="img-rounded" alt="Cinque Terre" width="100" height="100"" />
+                </div>
+                <div class="col-xs-8">  
+                  <h3>Hello World</h3>
+                  <p style="font-size:10px; color:#03225C;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                </div>                
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+        <div class="well" style="min-height:333px;">1
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+    </div>
+    
+</div>
+
+        
+
+
 <div class="row">
 
 <div class="col-3 col-s-3 menu">
@@ -23,7 +99,6 @@
 
     <div class="collection-flex-container" >
           {% for collection in collection_list %}
-          {{ collection.collection_id}}
               <div class="collection-flex-item" onclick="collectionClick({{ collection.id}})"> 
                 {{ collection.collection_name }}
               </div>
@@ -34,14 +109,11 @@
 
 {% if category_list %}
 
-    <div class="collection-flex-container">
+    <div class="category-flex-container">
           {% for category in category_list %}
-              <div class="collection-flex-item">{{ category.name }}</div>
-               {% for restaurant in category.restaurant.all %}
-                             <div class="collection-flex-item">{{ restaurant.restaurant_name  }}</div>
-
-               {% endfor %}
-
+              <div class="category-flex-item" onclick="categoryClick({{ category.id}})"> 
+                 {{ category.name }}
+              </div>
           {% endfor %}
     </div>
 
