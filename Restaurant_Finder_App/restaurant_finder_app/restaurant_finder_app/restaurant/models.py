@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 
@@ -60,6 +61,8 @@ class Category(models.Model):
 
 	class Meta:
 		default_related_name = 'categories'
+		verbose_name = _('category')
+		verbose_name_plural = _('categories')
 
 	def __str__(self):
 		return '%s' % (self.name)

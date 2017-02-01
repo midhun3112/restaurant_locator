@@ -5,6 +5,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.mail import send_mail
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
+from restaurant.models import Restaurant
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.conf import settings
 
 
 # Create your models here.
@@ -83,3 +87,40 @@ class User(AbstractBaseUser, PermissionsMixin):
         """
         send_mail(subject, message, from_email, [self.email])
 
+class UserProfile(models.Model):
+
+    GENRE_CHOICES = (
+        ('m', 'Male'),
+        ('f', 'Female'),
+    )
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, unique=True)
+    birth_date = models.DateField(default=timezone.now, blank=True)
+    genre = models.CharField(max_length=1, choices=GENRE_CHOICES, default='', blank=True)
+    address1 = models.CharField(max_length=150, default='', blank=True)
+    address2 = models.CharField(max_length=150, default='', blank=True)
+    postal_code = models.PositiveIntegerField(default=00000, blank=True)
+    state = models.CharField(max_length=150, default='', blank=True)
+    country = models.CharField(max_length=150, default='', blank=True)
+    is_owner = models.BooleanField(default=False)
+    # restaurant = models.ForeignKey(Restaurant, blank=True)
+
+    profile_image = models.ImageField(
+        upload_to = 'images/profile_pic/',
+        default = 'profile_pic/images/no-name.jpg'
+        )
+
+    class Meta:
+        default_related_name = 'user_profile'
+
+    def __str__(self):
+        return '{}'.format(self.user.email)
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def save_user_profile(sender, instance, **kwargs):
+    instance.userprofile.save()

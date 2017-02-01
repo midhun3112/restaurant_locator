@@ -2,8 +2,9 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext_lazy as _
 
-from authentication.models import User
+from authentication.models import User, UserProfile
 from authentication.utils.forms import UserChangeForm, UserCreationForm
+
 # Register your models here.
 
 class UserAdmin(UserAdmin):
@@ -32,3 +33,5 @@ class UserAdmin(UserAdmin):
     ordering = ('email',)
 
 admin.site.register(User, UserAdmin)
+admin.site.register(UserProfile)
+
