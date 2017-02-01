@@ -93,7 +93,7 @@ class UserProfile(models.Model):
         ('m', 'Male'),
         ('f', 'Female'),
     )
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_profile')
     # user = models.ForeignKey(User, unique=True)
     birth_date = models.DateField(default=timezone.now, blank=True)
     genre = models.CharField(max_length=1, choices=GENRE_CHOICES, default='', blank=True)
@@ -103,7 +103,7 @@ class UserProfile(models.Model):
     state = models.CharField(max_length=150, default='', blank=True)
     country = models.CharField(max_length=150, default='', blank=True)
     is_owner = models.BooleanField(default=False)
-    # restaurant = models.ForeignKey(Restaurant, blank=True)
+    # restaurant = models.ForeignKey(Restaurant, blank=True, null=True)
 
     profile_image = models.ImageField(
         upload_to = 'images/profile_pic/',
@@ -118,9 +118,11 @@ class UserProfile(models.Model):
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_user_profile(sender, instance, created, **kwargs):
+    print (created, 11111111)
     if created:
         UserProfile.objects.create(user=instance)
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def save_user_profile(sender, instance, **kwargs):
-    instance.userprofile.save()
+    print (2222222222)
+    instance.user_profile.save()

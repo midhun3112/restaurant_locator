@@ -58,11 +58,6 @@ class RegistrationForm(forms.Form):
                 raise forms.ValidationError(_("The two password fields did not match."))
         return self.cleaned_data
 
-class UserForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ('first_name', 'last_name', 'email')
-
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile

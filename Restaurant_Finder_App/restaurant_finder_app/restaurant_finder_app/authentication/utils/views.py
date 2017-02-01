@@ -7,9 +7,13 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from authentication.models import User
-from authentication.utils.forms import RegistrationForm, UserForm, UserProfileForm
+from authentication.utils.forms import RegistrationForm, UserProfileForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.contrib import messages
+from django.utils.translation import ugettext_lazy as _
+from django.shortcuts import redirect
+
 
 @csrf_protect
 def register(request):
@@ -51,18 +55,18 @@ def register_success(request):
 def update_profile(request):
     if request.method == 'POST':
         user_form = UserCreationForm(request.POST, instance=request.user)
-        profile_form = UserProfileForm(request.POST, instance=request.user.userprofile)
-        if user_form.is_valid() and profile_form.is_valid():
+        user_profile_form = UserProfileForm(request.POST, instance=request.user.user_profile)
+        if user_form.is_valid() and user_profile_form.is_valid():
             user_form.save()
-            profile_form.save()
+            user_profile_form.save()
             messages.success(request, _('Your profile was successfully updated!'))
             return redirect('settings:profile')
         else:
             messages.error(request, _('Please correct the error below.'))
     else:
         user_form = UserCreationForm(instance=request.user)
-        profile_form = UserProfileForm(instance=request.user.userprofile)
+        user_profile_form = UserProfileForm(instance=request.user.user_profile)
     return render(request, 'profile/user_profile.html', {
         'user_form': user_form,
-        'profile_form': profile_form
+        'user_profile_form': user_profile_form
     })

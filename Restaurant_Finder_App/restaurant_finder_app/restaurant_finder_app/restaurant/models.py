@@ -25,6 +25,8 @@ class WeekDay(models.Model):
 
 	class Meta:
 		default_related_name = 'week_day'
+		verbose_name = _('WeekDay')
+		verbose_name_plural = _('WeekDays')
 
 	def __str__(self):
 		return self.day
@@ -37,6 +39,8 @@ class RestaurantTiming(models.Model):
 
 	class Meta:
 		default_related_name = 'restaurant_timing'
+		verbose_name = _('Restaurant Timing')
+		verbose_name_plural = _('Restaurant Timings')
 
 	def __str__(self):
 		return '%s - %s - %s - %s' % (self.restaurant.restaurant_name, self.working_days.day,  self.start_time , self.end_time)
