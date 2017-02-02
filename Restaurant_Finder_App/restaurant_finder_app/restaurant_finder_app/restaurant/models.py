@@ -9,7 +9,7 @@ class Restaurant(models.Model):
 		)
 	restaurant_image = models.ImageField(
 		upload_to = 'images/restaurant_pic/',
-		default = 'restaurant_pic/images/no-name.jpg'
+		default = 'imagesrestaurant_pic/no-name.jpg'
 		)
 
 	class Meta:
@@ -49,7 +49,18 @@ class Collection(models.Model):
 	restaurant = models.ManyToManyField(Restaurant)
 	collection_name = models.CharField(
 			max_length = 255,
-		)
+	)
+	collection_image_thumbnail = models.ImageField(
+		upload_to = 'images/collections_pic/thumbnails/',
+		default = 'images/collections_pic/thumbnails/no-name.jpg'
+	)
+	collection_image = models.ImageField(
+		upload_to = 'images/collections_pic/',
+		default = 'images/collections_pic/no-name.jpg'
+	)
+	collection_description = models.CharField(
+			max_length = 2000,
+	)
 
 	class Meta:
 		default_related_name = 'collections'
@@ -61,7 +72,11 @@ class Category(models.Model):
 	restaurant = models.ManyToManyField(Restaurant)
 	name = models.CharField(
 			max_length = 255,
-		)
+	)
+	category_image = models.ImageField(
+	upload_to = 'images/categories_pic/',
+	default = 'images/categories_pic/no-name.jpg'
+	)
 
 	class Meta:
 		default_related_name = 'categories'

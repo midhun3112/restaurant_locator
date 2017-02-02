@@ -7,7 +7,7 @@ def home_page_view(request):
 	restaurant_list = Restaurant.objects.all()
 	collection_list = Collection.objects.all()
 	category_list = Category.objects.all()
-	context = {'restaurant_list': restaurant_list, 'collection_list': collection_list, 'category_list': category_list}
+	context = {'restaurant_list': restaurant_list, 'collection_list': collection_list[:4], 'category_list': category_list}
 	return render(request, 'home_page.html', context)
 
 def collection_list_view(request, collection_id):
