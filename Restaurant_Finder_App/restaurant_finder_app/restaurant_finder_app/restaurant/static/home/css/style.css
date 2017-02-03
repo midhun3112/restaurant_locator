@@ -51,8 +51,7 @@ h1.ui.header .sub.header, h2.ui.header .sub.header {
 }
 
 .collection_grid {
-    max-height: 100px;
-    min-height: 100px;
+    max-height: 80px;
     border-radius: 5px;
     padding: 10px;
 }

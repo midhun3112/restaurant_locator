@@ -145,7 +145,7 @@ LOGIN_REDIRECT_URL = '/' # It means home view
 # Django Suit configuration example
 SUIT_CONFIG = {
     # header
-    'ADMIN_NAME': 'Restaurant Finder',
+    'ADMIN_NAME': 'DinersQ',
     'HEADER_DATE_FORMAT': 'l, j. F Y',
     'HEADER_TIME_FORMAT': 'H:i',
 
