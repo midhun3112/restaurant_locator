@@ -5,17 +5,29 @@
 <div class="main_container">
     <div class="container">
         <div class="row">
-	        <div class="col-sm-12">
+	        <div class="col-sm-12" style="border:none">
+	            <h2 class="ui header">
+                <span class="segment_heading">Collections</span>
+                <span class="sub header">
+                <span class="segment_sub_heading">
+                 Create and browse lists of the finest restaurants          
+                </span>
+                </span>    
+              </h2>
 	            {% if collection_list %} {% for collection in collection_list %}
+
 	            <div class="col-md-4 collection_grid" onclick="collectionClick({{collection.id}})">
-	                <div class="col-sm-4  pull-left">
-	                    <img style="float:left" src="{{ MEDIA_URL }}{{ collection.collection_image_thumbnail }}" class="img-rounded" alt="Cinque Terre" width="75" height="75" " />
+	            	<div class="height100 menu-card ">
+	                <div class="col-xs-4 height100 noPadding overflowHidden">
+	                    <img style="float:left" src="{{ MEDIA_URL }}{{ collection.collection_image_thumbnail }}" class="img-responsive" alt="Cinque Terre" width="100%" height="100%"  />
 	               </div>
-	                <div class="col-sm-8 bgwhite ">  
-	                          <h3>{{collection.collection_name}}</h3>
-	                          <p style="font-size:10px; color:#03225C; ">{{collection.collection_description}}</p>
-	                </div>                                         
-	            </div>                                           
+	               <div class="ptop0 mr20 ml5 coll_detail plef10" text-overflow: ellipsis;>                                                            
+					     <div class="heading bold ln20">{{collection.collection_name}}</div>
+					     <div class="zblack fontsize4 description mt5  hp ">{{collection.collection_description}}</div>
+					</div>
+                    </div>                
+	            </div>   
+
 	            {% endfor %}
 	            {% endif %}
 	        </div>

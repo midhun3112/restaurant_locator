@@ -1,14 +1,14 @@
-<style>
-* 
-{
+<style> * {
     box-sizing: border-box;
 }
 
-h1.ui.header .sub.header, h2.ui.header .sub.header {
+h1.ui.header .sub.header,
+h2.ui.header .sub.header {
     font-size: 1.14285714rem;
 }
 
-.ui.header .sub.header, .ui.small.header .sub.header {
+.ui.header .sub.header,
+.ui.small.header .sub.header {
     font-size: 1rem;
 }
 
@@ -31,6 +31,14 @@ h1.ui.header .sub.header, h2.ui.header .sub.header {
     border: 1px solid #e7e7e7;
 }
 
+.heading {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-height: 40px;
+}
+
 .red {
     color: #cb202d;
 }
@@ -38,31 +46,122 @@ h1.ui.header .sub.header, h2.ui.header .sub.header {
 .white {
     color: #ffffff;
 }
+
 .bgwhite {
     background-color: #ffffff;
 }
 
-.ta-center, .tac {
+.ta-center,
+.tac {
     text-align: center;
 }
 
-.container, .main_container {
+.container,
+.main_container {
     background-color: #F3F3F3;
 }
 
 .collection_grid {
-    max-height: 80px;
+    height: 120px;
     border-radius: 5px;
     padding: 10px;
+    margin: 0px 0px 5px 0px;
+}
+
+.collections-grid .hp.description {
+    max-height: 50px;
+}
+
+.collections-grid .description,
+.collections-grid .heading {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-height: 40px;
+}
+
+.collections-grid .description {
+    line-height: 16px;
+    font-size: 14px;
+}
+
+.collections-grid .heading {
+    font-size: 17px;
+}
+
+.height100 {
+    height: 100% !important;
+}
+
+.noPadding {
+    padding: 0 !important;
+}
+
+.noMargin {
+    margin: 0 !important;
+}
+
+.overflowHidden {
+    overflow: hidden !important;
 }
 
 .footer {
-    margin:  25;
-    border-radius:  10;
+    margin: 25;
+    border-radius: 10;
     background-color: #0099cc;
     color: #ffffff;
     text-align: center;
     font-size: 12px;
     padding: 15px;
 }
+
+.menu-card {
+    background-color: white;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+}
+
+.coll_detail {
+    max-height: 120px;
+    overflow: hidden;
+}
+
+.ml5 {
+    margin-left: 5px;
+}
+
+.mr20 {
+    margin-right: 20px;
+}
+
+.pt10,
+.ptop0 {
+    padding-top: 10px;
+}
+
+.plef10 {
+    padding-left: 10px;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.ln20 {
+    line-height: 20px;
+}
+
+.fontsize4 {
+    font-size: 14px;
+}
+
+.zblack {
+    color: #33373D;
+}
+
+.mt5 {
+    margin-top: 5px;
+}
+
 </style>

@@ -17,10 +17,10 @@
               <div class="row">
                   {% if collection_list %} {% for collection in collection_list %}
                   <div class="col-md-6 collection_grid" onclick="collectionClick({{collection.id}})">
-                      <div class="col-sm-4  pull-left">
+                      <div class="col-xs-4  pull-left">
                           <img style="float:left" src="{{ MEDIA_URL }}{{ collection.collection_image_thumbnail }}" class="img-rounded" alt="Cinque Terre" width="75" height="75" " />
                         </div>
-                        <div class="col-sm-8 bgwhite">  
+                        <div class="col-xs-8 bgwhite">  
                           <h3>{{collection.collection_name}}</h3>
                           <p style="font-size:10px; color:#03225C; ">{{collection.collection_description}}</p>
                         </div>                                         
