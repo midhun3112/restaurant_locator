@@ -3,10 +3,10 @@
 <script type="text/javascript" src="{% static 'home/js/click.js' %}"></script>
 {% endblock %} {% block content %}
 <div class="main_container">
-  <div class="container">
-      <div class="row">
-          <div class="col-sm-8">
-              <h2 class="ui header">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2 class="ui header">
                 <span class="segment_heading">Collections</span>
                 <span class="sub header">
                 <span class="segment_sub_heading">
@@ -14,28 +14,28 @@
                 </span>
                 </span>    
               </h2>
-              <div class="row">
-                  {% if collection_list %} {% for collection in collection_list %}
-                  <div class="col-md-6 collection_grid" onclick="collectionClick({{collection.id}})">
-                      <div class="col-xs-4  pull-left">
-                          <img style="float:left" src="{{ MEDIA_URL }}{{ collection.collection_image_thumbnail }}" class="img-rounded" alt="Cinque Terre" width="75" height="75" " />
+                <div class="row">
+                    {% if collection_list %} {% for collection in collection_list %}
+                    <div class="col-md-6 collection_grid" onclick="collectionClick({{collection.id}})">
+                        <div class="height100 menu-card ">
+                            <div class="col-xs-4 height100 noPadding overflowHidden">
+                                <img style="float:left" src="{{ MEDIA_URL }}{{ collection.collection_image_thumbnail }}" class="img-responsive" alt="{{collection.collection_description}}" width="100%" height="100%" />
+                            </div>
+                            <div class="ptop0 mr20 ml5 coll_detail plef10" text-overflow: ellipsis;>
+                                <div class="heading bold ln20">{{collection.collection_name}}</div>
+                                <div class="zblack fontsize4 description mt5  hp ">{{collection.collection_description}}</div>
+                            </div>
                         </div>
-                        <div class="col-xs-8 bgwhite">  
-                          <h3>{{collection.collection_name}}</h3>
-                          <p style="font-size:10px; color:#03225C; ">{{collection.collection_description}}</p>
-                        </div>                                         
-                     </div>                                                 
-                   {% endfor %}
-                  {% endif %}
-              </div>
-              <div class="col-sm-12 " onclick="viewAllCollectionsClick()">
-                <div class="ui segment red tac">All collections in Mumbai 
+                    </div>
+                    {% endfor %} {% endif %}
                 </div>
-              </div>
-          </div>   
-
-          <div class="col-sm-4 ">
-              <h2 class="ui header">
+                <div class="col-sm-12 " onclick="viewAllCollectionsClick()">
+                    <div class="ui segment red tac">All collections in Mumbai
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 ">
+                <h2 class="ui header">
                 <span class="segment_heading">Order Food Online</span>
                 <span class="sub header">
                 <span class="segment_sub_heading">
@@ -43,18 +43,15 @@
                 </span>
                 </span>    
               </h2>
-              <div class="well " style="min-height:333px; ">1
-
-              </div>
-          </div>
-      </div>
-
-      <div class="row ">
-      {% if category_list %}
-          {% for category in category_list %}
+                <div class="well " style="min-height:333px; ">1
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            {% if category_list %} {% for category in category_list %}
             <div class="col-sm-2" onclick="categoryClick({{ category.id}}) ">
-              <img src="{{ MEDIA_URL }}{{category.category_image}}" class="img-rounded center-block " alt="Cinque Terre " width="25% " height="25%" " />
-            <div class="text-center">{{category.name}}</div>
+                <img src="{{ MEDIA_URL }}{{category.category_image}}" class="img-rounded center-block " alt="Cinque Terre " width="25% " height="25%" " />
+            <div class="text-center ">{{category.name}}</div>
             </div>
           {% endfor %}
       {% endif %}

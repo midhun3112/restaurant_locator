@@ -26,12 +26,13 @@ def collection_list_view(request):
 
 def collection_restaurant_list_view(request, collection_id):
     try:
-        collections = Collection.objects.get(pk=collection_id)
+        collection = Collection.objects.get(pk=collection_id)
     except Collection.DoesNotExist:
         raise Http404("Collection does not exist")
 
-    context = {'restaurant_list': collections.restaurant.all}
-    return render(request, 'restaurant_list.html', context)
+    context = {'collection': collection,
+               'restaurant_list': collection.restaurant.all}
+    return render(request, 'collection_restaurant_list.html', context)
 
 
 def category_list_view(request, category_id):

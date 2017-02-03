@@ -140,7 +140,7 @@ h2.ui.header .sub.header {
     padding-top: 10px;
 }
 
-.plef10 {
+.pl10 {
     padding-left: 10px;
 }
 
@@ -162,6 +162,19 @@ h2.ui.header .sub.header {
 
 .mt5 {
     margin-top: 5px;
+}
+
+.mbot-container, .pos-relative, .relative {
+    position: relative;
+}
+
+.restaurant_grid_cover_image {
+    height: 150px;
+    display: block;
+    border-radius: 4px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 </style>
