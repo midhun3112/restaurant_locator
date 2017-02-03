@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% load staticfiles %} {% block title %} DinersQ Collections {% endblock %} {% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}" /> {% endblock %} {% block javascript %}
+<script type="text/javascript" src="{% static 'home/js/click.js' %}"></script>
+{% endblock %} {% block content %}
+<div class="main_container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12" style="border:none">
+                <div class="">
+                  <img style="float:left" src="{{ MEDIA_URL }}{{ collection.collection_image }}" class="img-responsive" alt="{{collection.collection_description}}" width="100%" height="100%" />
+                </div>
+                <h2 class="ui header">
+                <span class="segment_heading">Collections</span>
+                <span class="sub header">
+                <span class="segment_sub_heading">
+                 Create and browse lists of the finest restaurants          
+                </span>
+                </span>    
+              </h2>
+                <div class="row">
+                    {% if restaurant_list %} {% for restaurant in restaurant_list %}
+                    <div class="col-md-4 collection_grid">
+
+
+
+
+  <div class="style=" height:100px; ">
+
+                          
+        <a href="h"  class=" pl10 ptop0" style=" 
+    background: url(https://b.zmtcdn.com/data/pictures/4/18394584/8914cfb043981e966367fa133a0c3595_top_thumb_620_314.jpg?output-format=webp) no-repeat;
+    height: 150px;
+    display: block;
+    border-radius: 4px;
+    background-position: center center;">
+    
+<!--       <div data-res-id="18427743" class="ads-res-snippet-rating-large  rating-for-18427743 level-7">
+        4.0
+      </div>
+      <div class="ui tiny yellow label">
+      <span class="ttupper">
+      Featured
+      </span> -->
+      </div>
+      </a>
+
+<!--     <div class="ptop0 pbot0">
+
+                      <a href="https://www.zomato.com/mumbai/tre-lower-parel" >
+          <div class="res_title zblack bold " title="TRE">
+            TRE
+          </div>
+        </a>
+              
+        <a  href="https://www.zomato.com/mumbai/lower-parel-restaurants" title="Restaurants in Lower Parel">
+          <div class="nowrap grey-text fontsize4">Lower Parel, Mumbai</div>
+        </a>
+              
+                <div class="nowrap grey-text">
+          Continental, American
+        </div>
+        
+            </div>   -->
+</div>
+
+
+
+
+
+                    </div>
+                    {% endfor %} {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
