@@ -1,7 +1,38 @@
 from django.shortcuts import render
 from restaurant.models import Restaurant, Collection, Category
+import operator
+from django.db.models import Q
+from functools import reduce
 
 # Create your views here.
+
+
+def search_view(request):
+    query = request.GET.get('search_query')
+    if query:
+        query_list = query.split()
+        restaurant_list = Restaurant.objects.filter(
+            reduce(operator.and_,
+                   (Q(restaurant_name__icontains=search_text) for search_text in query_list))
+        )
+        if not restaurant_list:
+            collection_list = Collection.objects.filter(
+                reduce(operator.and_,
+                       (Q(collection_name__icontains=search_text) for search_text in query_list))
+            )
+            for collection in collection_list:
+            	restaurant_list = collection.restaurant.all()
+
+            if not restaurant_list:
+                category_list = Category.objects.filter(
+                    reduce(operator.and_,
+                           (Q(name__icontains=search_text) for search_text in query_list))
+                )
+            for category in category_list:
+            	restaurant_list = category.restaurant.all()
+
+    context = {'restaurant_list': restaurant_list, }
+    return render(request, 'restaurant_list.html', context)
 
 
 def home_page_view(request):
