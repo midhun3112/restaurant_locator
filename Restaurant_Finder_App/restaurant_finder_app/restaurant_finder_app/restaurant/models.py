@@ -1,23 +1,120 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-
+from django.core.validators import RegexValidator
 # Create your models here.
 
 
 class Restaurant(models.Model):
     restaurant_name = models.CharField(
         max_length=255,
+        blank=False
     )
     restaurant_image = models.ImageField(
         upload_to='images/restaurant_pic/',
-        default='imagesrestaurant_pic/no-name.jpg'
+        default='images/restaurant_pic/restaurant_image.jpg'
     )
+    restaurant_image_thumbnail = models.ImageField(
+        upload_to='images/restaurant_pic/thumbnail/',
+        default='images/restaurant_pic/thumbnail/restaurant_image_thumbnail.jpg'
+    )
+    address_1 = models.CharField(
+        max_length=500,
+        blank=False
+    )
+    address_2 = models.CharField(
+        max_length=500,
+        blank=False
+    )
+    locality = models.CharField(
+        max_length=255,
+        blank=False
+    )
+    city = models.CharField(
+        max_length=255,
+        blank=False
+    )
+    state = models.CharField(
+        max_length=255,
+        blank=False
+    )
+    pincode = models.IntegerField()
+    country = models.CharField(
+        max_length=255,
+        blank=False
+    )
+    phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,15}$',
+        message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    # validators should be a list
+    phone_number_1 = models.CharField(
+        max_length=15,
+        validators=[phone_regex],
+        blank=False)
+    phone_number_2 = models.CharField(
+        max_length=15,
+        validators=[phone_regex],
+        blank=True
+    )
+    is_pure_veg = models.BooleanField(default=False)
+    is_credit_cards_accepted = models.BooleanField(default=False)
+    is_buffet_offered = models.BooleanField(default=False)
+    is_wifi_offered = models.BooleanField(default=False)
+    is_alcohol_served = models.BooleanField(default=False)
+    has_outdoor_seating = models.BooleanField(default=False)
 
     class Meta:
         default_related_name = 'restaurant'
 
     def __str__(self):
         return '{}'.format(self.restaurant_name)
+
+
+class EstablishmentType(models.Model):
+    type_of_establishment = models.CharField(
+        max_length=500,
+    )
+    restaurant = models.ForeignKey(
+        Restaurant, on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        default_related_name = 'establishment_type'
+        verbose_name = _('EstablishmentType')
+        verbose_name_plural = _('EstablishmentTypes')
+
+    def __str__(self):
+        return self.type_of_establishment
+
+
+class Cuisine(models.Model):
+    cuisine_name = models.CharField(
+        max_length=500,
+    )
+    restaurant = models.ForeignKey(
+        Restaurant, on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        default_related_name = 'cuisine'
+        verbose_name = _('Cuisine')
+        verbose_name_plural = _('Cusines')
+
+    def __str__(self):
+        return self.cuisine_name
+
+
+class CostForTwo(models.Model):
+    cost_for_two = models.CharField(
+        max_length=500,
+    )
+    restaurant = models.ForeignKey(
+        Restaurant, on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        default_related_name = 'cost_for_two'
+        verbose_name = _('CostForTwo')
+        verbose_name_plural = _('CostForTwo')
+
+    def __str__(self):
+        return self.cost_for_two
 
 
 class WeekDay(models.Model):
