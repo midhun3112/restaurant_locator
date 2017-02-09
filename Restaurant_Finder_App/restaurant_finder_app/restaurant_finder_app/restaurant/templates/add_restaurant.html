@@ -1,0 +1,177 @@
+{% extends "base.html" %} {% load staticfiles %} {% block title %} Home {% endblock %} {% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}" /> {% endblock %} {% block javascript %}
+<script type="text/javascript" src="{% static 'home/js/click.js' %}"></script>
+{% endblock %}{% block header %} {% include "header.html" %} {% endblock %} {% block content %}
+  <div class="col-sm-8">
+    {% if form.errors %}
+    {% for error in form.errors %}
+    
+    {% endfor %} 
+    <div class="text-danger">Please correct the error{{ form.errors|pluralize }} below.</div>
+    {% endif %}
+    <p>
+    <div class="form-horizontal">
+      <form  method="post" action="{% url 'add_restaurant' %}"" enctype="multipart/form-data" role="form">{% csrf_token %}
+
+        <div class="form-group row {% if form.subject.errors %}has-error{% endif %}">
+           <label for="id_restaurant_name" class="col-sm-3 control-label">Restaurant Name:</label>
+           <div class="col-lg-5">
+            {{ form.restaurant_name }}
+            {% if form.restaurant_name.errors %}
+              <span class="help-block">
+                {% for error in form.restaurant_name.errors %}{{ error }}{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="form-group row {% if form.email.errors %}has-error{% endif %}">
+          <label for="id_restaurant_image" class="col-sm-3 control-label">Restaurant Image:</label>
+          <div class="col-lg-5">
+          {{ form.restaurant_image }}
+            {% if form.restaurant_image.errors %}
+              <span class="help-block">
+                {% for error in form.restaurant_image.errors %}{{ error }}{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+        
+        <div class="form-group row {% if form.message.errors %}has-error{% endif %}">
+          <label for="id_restaurant_image_thumbnail" class="col-sm-3 control-label">Restaurant Image Thumbnail:</label>
+          <div class="col-lg-5">
+            {{ form.restaurant_image_thumbnail }}
+            {% if form.restaurant_image_thumbnail.errors %}
+              <span class="help-block">
+                {% for error in form.restaurant_image_thumbnail.errors %}{{ error }}{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+        
+        <div class="form-group row {% if form.message.errors %}has-error{% endif %}">
+          <label for="id_address_1" class="col-sm-3 control-label">Address 1:</label>
+          <div class="col-lg-5">
+            {{ form.address_1 }}
+            {% if form.address_1.errors %}
+              <span class="help-block">
+                {% for error in form.address_1.errors %}{{ error }}{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+                
+        <div class="form-group row {% if form.message.errors %}has-error{% endif %}">
+          <label for="id_address_2" class="col-sm-3 control-label">Address 2:</label>
+          <div class="col-lg-5">
+            {{ form.address_2 }}
+            {% if form.address_2.errors %}
+              <span class="help-block">
+                {% for error in form.address_2.errors %}{{ error }}{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+                
+        <div class="form-group row {% if form.message.errors %}has-error{% endif %}">
+          <label for="id_locality" class="col-sm-3 control-label">Locality:</label>
+          <div class="col-lg-5">
+            {{ form.locality }}
+            {% if form.locality.errors %}
+              <span class="help-block">
+                {% for error in form.locality.errors %}{{ error }}{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+                
+        <div class="form-group row {% if form.message.errors %}has-error{% endif %}">
+          <label for="id_city" class="col-sm-3 control-label">City:</label>
+          <div class="col-lg-5">
+            {{ form.city }}
+            {% if form.city.errors %}
+              <span class="help-block">
+                {% for error in form.city.errors %}{{ error }}{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+                
+        <div class="form-group row {% if form.message.errors %}has-error{% endif %}">
+          <label for="id_state" class="col-sm-3 control-label">State:</label>
+          <div class="col-lg-5">
+            {{ form.state }}
+            {% if form.state.errors %}
+              <span class="help-block">
+                {% for error in form.state.errors %}{{ error }}{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+                
+        <div class="form-group row {% if form.message.errors %}has-error{% endif %}">
+          <label for="id_pincode" class="col-sm-3 control-label">Pincode:</label>
+          <div class="col-lg-5">
+            {{ form.pincode }}
+            {% if form.pincode.errors %}
+              <span class="help-block">
+                {% for error in form.pincode.errors %}{{ error }}{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+                
+        <div class="form-group row {% if form.message.errors %}has-error{% endif %}">
+          <label for="id_country" class="col-sm-3 control-label">Country:</label>
+          <div class="col-lg-5">
+            {{ form.country }}
+            {% if form.country.errors %}
+              <span class="help-block">
+                {% for error in form.country.errors %}{{ error }}{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+                
+        <div class="form-group row {% if form.message.errors %}has-error{% endif %}">
+          <label for="id_phone_number_1" class="col-sm-3 control-label">Phone Number 1:</label>
+          <div class="col-lg-5">
+            {{ form.phone_number_1 }}
+            {% if form.phone_number_1.errors %}
+              <span class="help-block">
+                {% for error in form.phone_number_1.errors %}{{ error }}{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+                
+        <div class="form-group row {% if form.message.errors %}has-error{% endif %}">
+          <label for="id_phone_number_2" class="col-sm-3 control-label">Phone Number 2:</label>
+          <div class="col-lg-5">
+            {{ form.phone_number_2 }}
+            {% if form.phone_number_2.errors %}
+              <span class="help-block">
+                {% for error in form.phone_number_2.errors %}{{ error }}{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+        
+        <div class="form-group row">
+          <div class="col-sm-5 col-sm-offset-3">
+            <input type="submit" value="Validate form" class="btn btn-primary" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

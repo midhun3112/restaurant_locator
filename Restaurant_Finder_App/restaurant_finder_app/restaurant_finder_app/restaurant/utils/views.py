@@ -3,6 +3,9 @@ from restaurant.models import Restaurant, Collection, Category
 import operator
 from django.db.models import Q
 from functools import reduce
+from restaurant.utils.forms import AddRestaurantForm
+from django.http import HttpResponseRedirect
+
 
 # Create your views here.
 
@@ -76,3 +79,30 @@ def category_list_view(request, category_id):
 
     context = {'restaurant_list': categories.restaurant.all}
     return render(request, 'restaurant_list.html', context)
+
+
+def add_restaurant(request):
+    if request.method == 'POST':
+        form = AddRestaurantForm(request.POST, request.FILES)
+        if form.is_valid():
+            # restaurant_image = Restaurant(restaurant_image = request.FILES['restaurant_image'])
+            # restaurant_image.save()
+            # restaurant_image_thumbnail = Restaurant(restaurant_image_thumbnail = request.FILES['restaurant_image_thumbnail'])
+            # restaurant_image_thumbnail.save()
+            print (form.is_valid())  # form contains data and errors
+            form.save(commit=True)
+            # instance = form.save(commit=False)
+            # instance.section = section
+            # instance.save()
+            return HttpResponseRedirect('/')
+
+        else:  # invalid case
+            print (form.is_valid())  # form contains data and errors
+            print (form.errors)
+
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = AddRestaurantForm()
+
+    return render(request, 'add_restaurant.html', {'form': form})

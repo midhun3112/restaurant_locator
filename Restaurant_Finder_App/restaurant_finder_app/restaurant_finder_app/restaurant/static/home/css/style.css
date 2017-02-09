@@ -169,6 +169,7 @@ h2.ui.header .sub.header {
 }
 
 .restaurant_grid_cover_image {
+    background-size: cover;
     height: 150px;
     display: block;
     border-radius: 4px;
