@@ -1,0 +1,149 @@
+{% extends "base.html" %} {% load staticfiles %} {% block title %} DinersQ Collections {% endblock %} {% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}" /> {% endblock %} {% block javascript %}
+<script type="text/javascript" src="{% static 'home/js/click.js' %}"></script>
+{% endblock %} {% block header %} {% include "header.html" %} {% endblock %} {% block content %}
+<div class="main_container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12" style="border:none">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="">
+                            <img style="float:left" src="{{ MEDIA_URL }}{{ restaurant.restaurant_image }}" class="img-responsive" alt="{{restaurant.restaurant_name }}" width="100%" height="100%" />
+                        </div>
+                        <h2 class="ui header">
+                        <span class="segment_heading">{{restaurant.restaurant_name}}   </span>
+                        <span class="sub header">
+                        <span class="segment_sub_heading">
+                         {{restaurant.locality}}             
+                        </span>
+                        </span>    
+                        </h2>
+     
+                        <div class="row">
+                                <div class="row ui segment">
+                                    <div class="col-sm-4 pl0 pr20">
+                                        <div class="mbot">
+                                            <div class="res-main-phone p-relative phone-details clearfix" id="resinfo-phone" title="{{restaurant.restaurant_name}}">
+                                                <div class="phone" id="phoneNoString">
+                                                    <h2 aria-label="Phone number" class="mb5" role="heading" tabindex="0">Phone number</h2>
+                                                    <span class="tel left res-tel">
+                                                    <span class="fontsize2 bold zgreen">
+                                                    <span aria-label="{{restaurant.phone_number_1}}" class="tel" tabindex="0">{{restaurant.phone_number_1}}
+                                                    </span>
+                                                    </span>
+                                                    <br>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mbot">
+                                            <div class="res-info-group clearfix">
+                                                <h2 class="mt0 mb5" tabindex="0">Cuisines</h2>
+                                                <div class="res-info-cuisines clearfix">
+                                                    <a class="zred" href="https://www.zomato.com/kochi/restaurants/biryani" title="View all Biryani Restaurants in Kochi">Biryani</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mbot mtop">
+                                            <div class="res-info-group clearfix">
+                                                <div class="res-info-detail">
+                                                    <span class="hdn">Pandari's Biriyani, Chittoor Road</span>
+                                                    <div tabindex="0">
+                                                        <h2 class="left mt0 mb5">Cost&nbsp;</h2>
+                                                        <div aria-label="The cost" class="tooltip-w left" tabindex="0">
+                                                            <span class="res-info-detail-icon" data-icon="|"></span>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                    <span aria-label="Average ₹500 for two people (approx.)" tabindex="0">
+                                                    </span>
+                                                    <div class="ttupper fontsize5 grey-text">
+                                                        <span aria-label="Average ₹500 for two people (approx.)" tabindex="0">Average</span>
+                                                    </div>
+                                                    <span aria-label="Average ₹500 for two people (approx.)" tabindex="0">₹500 for two people (approx.)</span>
+                                                    <div class="mt5">
+                                                        <div class="res-info-cft-text fontsize5 grey-text" tabindex="0">
+                                                            <span class="res-info-payment res-info-icon"></span> <span itemprop="paymentAccepted">Cash only</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4  pl20 pr20">
+                                        <div class="mbot">
+                                            <div class="res-info-group clearfix">
+                                                <div class="res-info-detail">
+                                                    <div class="s-title hdn" tabindex="0">
+                                                        <div class="left mr10">
+                                                            Opening hours
+                                                        </div><span class="res-timings-toggle is-closed" id="res-timings-toggle">(See more +)</span>
+                                                        <div class="clear"></div>
+                                                    </div>
+                                                    <div class="res-info-timings">
+                                                        <div class="clearfix" tabindex="0">
+                                                            <h2 class="mt0 mb5 inlineblock">Opening hours</h2>&nbsp;·&nbsp;<span class="fontsize5 zgreen">Open now</span>
+                                                            <div class="medium">
+                                                                Today&nbsp;&nbsp;9:30 AM to 11:30 AM
+                                                            </div>
+                                                            <div>
+                                                                <div class="left zred expand cursor-pointer user-select-none fontsize5">
+                                                                    See more
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb5">
+                                            <h2 aria-label="Address" tabindex="0">Address</h2>
+                                        </div>
+                                        <div class="mbot0">
+                                            <div class="borderless res-main-address">
+                                                <div class="resinfo-icon">
+                                                    <span>Between <span>Chittoor Road</span> and KSRTC Bus Stand, CP Ummer Road, MG, Chittoor Road, Kochi</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mbot0">
+                                            <div class="resbox__main--row">
+                                                <div class="resmap pos-relative mt5 mb5">
+                                                    <a class="res-map-link" href="https://www.zomato.com/kochi/pandaris-biriyani-chittor-road/maps#tabtop">Pandari's Biriyani address, Pandari's Biriyani location</a>
+                                                    <div id="res-map-canvas">
+                                                        <div class="resmap-text-container">
+                                                            Get Directions
+                                                        </div>
+                                                        <div class="resmap-img" data-is-zomato="true" data-url="https://www.zomato.com/php/staticmap?center=9.9803952000,76.2876959000&amp;size=240x150&amp;maptype=zomato\&amp;markers=9.9803952000,76.2876959000,pin_res32|&amp;sensor=false&amp;scale=2&amp;zoom=14&amp;language=en" style="background: url(&quot;https://www.zomato.com/php/staticmap?center=9.9803952000,76.2876959000&amp;size=240x150&amp;maptype=zomato&amp;markers=9.9803952000,76.2876959000,pin_res32|&amp;sensor=false&amp;scale=2&amp;zoom=14&amp;language=en&quot;) center center / cover no-repeat rgb(244, 244, 244); width: 100%; height: 100%;"></div>
+                                                    </div>
+                                                    <script type="text/javascript">
+                                                    var mapData = {
+                                                        lat: 9.9803952000,
+                                                        lon: 76.2876959000
+                                                    };
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 pl20 pr20">
+                                        <div class="res-header-claims mbot0 ptop0">
+                                            <div class="hom">
+                                                <a class="fontsize5 tooltip_formatted cursor-pointer grey-text" id="resinfo-error" tabindex="0">Report Error</a>
+                                            </div><a class="tooltip_formatted grey-text claim-your-listing cursor-pointer fontsize5" data-res-id="95358" data-res_name="Pandari's Biriyani" rel="nofollow" tabindex="0">Claim this listing</a>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-sm-12 " onclick="viewAllCollectionsClick()">
+                            <div class="ui segment red tac">All collections in Mumbai
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

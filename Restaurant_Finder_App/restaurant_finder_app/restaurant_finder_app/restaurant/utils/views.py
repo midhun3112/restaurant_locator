@@ -85,24 +85,30 @@ def add_restaurant(request):
     if request.method == 'POST':
         form = AddRestaurantForm(request.POST, request.FILES)
         if form.is_valid():
-            # restaurant_image = Restaurant(restaurant_image = request.FILES['restaurant_image'])
-            # restaurant_image.save()
-            # restaurant_image_thumbnail = Restaurant(restaurant_image_thumbnail = request.FILES['restaurant_image_thumbnail'])
-            # restaurant_image_thumbnail.save()
-            print (form.is_valid())  # form contains data and errors
-            form.save(commit=True)
-            # instance = form.save(commit=False)
-            # instance.section = section
-            # instance.save()
+            print (form, 11111111)
+            print (dir(form))
+            print (form.cleaned_data['category'], 333333333)
+            categories = form.cleaned_data['category']
+            restaurant = form.save(commit=True)
+            print(restaurant, type(restaurant))
+            for category in categories:
+                print(category, type(category))
+                category.restaurant.add(restaurant)
             return HttpResponseRedirect('/')
-
         else:  # invalid case
-            print (form.is_valid())  # form contains data and errors
             print (form.errors)
-
-
     # if a GET (or any other method) we'll create a blank form
     else:
         form = AddRestaurantForm()
 
     return render(request, 'add_restaurant.html', {'form': form})
+
+
+def view_restaurant(request, restaurant_id):
+    try:
+        restaurant_detail = Restaurant.objects.get(pk=restaurant_id)
+    except Restaurant.DoesNotExist:
+        raise Http404("Restaurant does not exist")
+
+    context = {'restaurant': restaurant_detail}
+    return render(request, 'restaurant_detail.html', context)

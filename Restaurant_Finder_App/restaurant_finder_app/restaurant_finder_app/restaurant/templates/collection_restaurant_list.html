@@ -24,18 +24,20 @@
                     
                     <div class="col-sm-4 collection_grid height100 overflowHidden">
                         <div class="" style=" height:240px; ">
-                            <a href="https://www.zomato.com/kochi/cake-hut-kaloor" class="relative pl10 ptop0" style="background-size: cover; background-image: url({{MEDIA_URL}}{{restaurant.restaurant_image}}); height: 150px; display: block; border-radius: 4px; background-position: center center;">
-                            </a>
+                            <div onclick="restaurantClick({{restaurant.id}})">
+                                <a class="relative pl10 ptop0" style="background-size: cover; background-image: url({{MEDIA_URL}}{{restaurant.restaurant_image}}); height: 150px; display: block; border-radius: 4px; background-position: center center;">
+                                </a>
+                            </div>
 
                             <div class="ptop0 pbot0">
 
-                            <a href="https://www.zomato.com/mumbai/tre-lower-parel" >
+                            <a >
                               <div class="res_title zblack bold " title="TRE">
                                 {{restaurant.restaurant_name}}
                               </div>
                             </a>
                                   
-                            <a  href="https://www.zomato.com/mumbai/lower-parel-restaurants" title="Restaurants in Lower Parel">
+                            <a title="Restaurants in Lower Parel">
                               <div class="nowrap grey-text fontsize4">Lower Parel, Mumbai</div>
                             </a>
                                   
