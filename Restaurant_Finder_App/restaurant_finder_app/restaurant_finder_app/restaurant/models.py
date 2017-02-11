@@ -10,9 +10,13 @@ class Restaurant(models.Model):
     )
     restaurant_image = models.ImageField(
         upload_to='images/restaurant_pic/',
-        default='imagesrestaurant_pic/no-name.jpg'
+        default='images/restaurant_pic/no-name.jpg'
     )
-
+    restaurant_thumbnail_image = models.ImageField(
+        upload_to='images/restaurant_pic/thumbnails/',
+        default='images/restaurant_pic/thumbnails/no-name.jpg'
+    )
+                    
     class Meta:
         default_related_name = 'restaurant'
 
