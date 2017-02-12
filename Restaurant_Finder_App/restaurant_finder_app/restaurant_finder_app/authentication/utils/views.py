@@ -23,10 +23,10 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = User.objects.create_user(
-            email =form.cleaned_data['email'],
-            password=form.cleaned_data['password1'],
-            first_name=form.cleaned_data['firstname'],
-            last_name=form.cleaned_data['lastname']
+                email=form.cleaned_data['email'],
+                password=form.cleaned_data['password1'],
+                first_name=form.cleaned_data['firstname'],
+                last_name=form.cleaned_data['lastname']
             )
             return HttpResponseRedirect('/register/success/')
     # else:
@@ -39,27 +39,31 @@ def register(request):
         'form': form
     }
     return render(request, 'registration/registration_form.html', context)
- 
+
     # return render_to_response(
     # 'registration/registration_form.html',
     # variables,
     # )
- 
+
+
 def register_success(request):
     return render_to_response(
-    'registration/registration_success.html',
-    ) 
+        'registration/registration_success.html',
+    )
+
 
 @login_required
 @transaction.atomic
 def update_profile(request):
     if request.method == 'POST':
         user_form = UserCreationForm(request.POST, instance=request.user)
-        user_profile_form = UserProfileForm(request.POST, instance=request.user.user_profile)
+        user_profile_form = UserProfileForm(
+            request.POST, instance=request.user.user_profile)
         if user_form.is_valid() and user_profile_form.is_valid():
             user_form.save()
             user_profile_form.save()
-            messages.success(request, _('Your profile was successfully updated!'))
+            messages.success(request, _(
+                'Your profile was successfully updated!'))
             return redirect('settings:profile')
         else:
             messages.error(request, _('Please correct the error below.'))

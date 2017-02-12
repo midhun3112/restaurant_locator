@@ -169,6 +169,7 @@ h2.ui.header .sub.header {
 }
 
 .restaurant_grid_cover_image {
+    background-size: cover;
     height: 150px;
     display: block;
     border-radius: 4px;
@@ -176,5 +177,12 @@ h2.ui.header .sub.header {
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
+
+#myPopoverContent {display: none; float: right;}
+.popover{
+    width:700px;   
+}
+
+#test {margin-left: 250px;}
 
 </style>

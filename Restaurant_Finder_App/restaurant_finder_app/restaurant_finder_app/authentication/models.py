@@ -118,11 +118,9 @@ class UserProfile(models.Model):
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_user_profile(sender, instance, created, **kwargs):
-    print (created, 11111111)
     if created:
         UserProfile.objects.create(user=instance)
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def save_user_profile(sender, instance, **kwargs):
-    print (2222222222)
     instance.user_profile.save()

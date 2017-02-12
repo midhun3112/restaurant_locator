@@ -1,7 +1,43 @@
 from django.shortcuts import render
 from restaurant.models import Restaurant, Collection, Category
+import operator
+from django.db.models import Q
+from functools import reduce
+from restaurant.utils.forms import AddRestaurantForm
+from django.http import HttpResponseRedirect
+
 
 # Create your views here.
+
+
+def search_view(request):
+    query = request.GET.get('search_query')
+    if len(query) > 0:
+        if query:
+            query_list = query.split()
+            restaurant_list = Restaurant.objects.filter(
+                reduce(operator.and_,
+                       (Q(restaurant_name__icontains=search_text) for search_text in query_list))
+            )
+
+        if not restaurant_list:
+            collection_list = Collection.objects.filter(
+                reduce(operator.and_,
+                       (Q(collection_name__icontains=search_text) for search_text in query_list))
+            )
+            for collection in collection_list:
+                restaurant_list = collection.restaurant.all()
+
+        if not restaurant_list:
+            category_list = Category.objects.filter(
+                reduce(operator.and_,
+                       (Q(name__icontains=search_text) for search_text in query_list))
+            )
+            for category in category_list:
+                restaurant_list = category.restaurant.all()
+
+        context = {'restaurant_list': restaurant_list, }
+        return render(request, 'restaurant_list.html', context)
 
 
 def home_page_view(request):
@@ -43,3 +79,36 @@ def category_list_view(request, category_id):
 
     context = {'restaurant_list': categories.restaurant.all}
     return render(request, 'restaurant_list.html', context)
+
+
+def add_restaurant(request):
+    if request.method == 'POST':
+        form = AddRestaurantForm(request.POST, request.FILES)
+        if form.is_valid():
+            print (form, 11111111)
+            print (dir(form))
+            print (form.cleaned_data['category'], 333333333)
+            categories = form.cleaned_data['category']
+            restaurant = form.save(commit=True)
+            print(restaurant, type(restaurant))
+            for category in categories:
+                print(category, type(category))
+                category.restaurant.add(restaurant)
+            return HttpResponseRedirect('/')
+        else:  # invalid case
+            print (form.errors)
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = AddRestaurantForm()
+
+    return render(request, 'add_restaurant.html', {'form': form})
+
+
+def view_restaurant(request, restaurant_id):
+    try:
+        restaurant_detail = Restaurant.objects.get(pk=restaurant_id)
+    except Restaurant.DoesNotExist:
+        raise Http404("Restaurant does not exist")
+
+    context = {'restaurant': restaurant_detail}
+    return render(request, 'restaurant_detail.html', context)
