@@ -5,9 +5,7 @@ from django.db.models import Q
 from functools import reduce
 from restaurant.utils.forms import AddRestaurantForm, MenuForm
 from django.http import HttpResponseRedirect
-from django.forms import formset_factory
 from django.forms import modelformset_factory
-
 
 # Create your views here.
 
@@ -84,32 +82,36 @@ def category_list_view(request, category_id):
 
 
 def add_restaurant(request):
-    MenuFormSet = modelformset_factory(MenuImage,
-                                        form=MenuForm, extra=5)
+    MenuFormSet = modelformset_factory(
+        MenuImage, form=MenuForm, extra=3, fields=('menu_image',),)
     if request.method == 'POST':
         form = AddRestaurantForm(request.POST, request.FILES)
         menuformset = MenuFormSet(request.POST, request.FILES,
-                               queryset=MenuImage.objects.none())
-        if form.is_valid():
+                                  queryset=MenuImage.objects.none())
+        if form.is_valid() and menuformset.is_valid():
             categories = form.cleaned_data['category']
             restaurant = form.save(commit=True)
-            print(restaurant, type(restaurant))
+
             for category in categories:
-                print(category, type(category))
                 category.restaurant.add(restaurant)
-            for menuform in menuformset.cleaned_data:
-                menu_image = menuform['menu']
-                photo = MenuImage(post=form, image=menu_image)
-                photo.save()
+
+            for menuform in menuformset:
+                if menuform.is_valid():
+                    image = menuform.cleaned_data.get('menu_image')
+                    picture = MenuImage(
+                        restaurant=restaurant, menu_image=image)
+                    picture.save()
+
             return HttpResponseRedirect('/')
         else:  # invalid case
             print (form.errors)
+            print(menuformset.errors)
     # if a GET (or any other method) we'll create a blank form
     else:
         form = AddRestaurantForm()
         menuformset = MenuFormSet(queryset=MenuImage.objects.none())
 
-    return render(request, 'add_restaurant.html', {'form': form,'menuformset': menuformset})
+    return render(request, 'add_restaurant.html', {'form': form, 'menuformset': menuformset})
 
 
 def view_restaurant(request, restaurant_id):

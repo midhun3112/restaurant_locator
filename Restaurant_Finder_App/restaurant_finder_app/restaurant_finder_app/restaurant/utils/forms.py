@@ -2,6 +2,7 @@ from django import forms
 from authentication.models import User, UserProfile
 from django.utils.translation import gettext as _
 from restaurant.models import Restaurant, Category, MenuImage
+from django.forms.formsets import BaseFormSet
 
 class AddRestaurantForm(forms.ModelForm):
     restaurant_name = forms.CharField(widget=forms.TextInput(
@@ -37,7 +38,8 @@ class AddRestaurantForm(forms.ModelForm):
                   'address_2', 'locality', 'city', 'state', 'pincode', 'country', 'phone_number_1', 'phone_number_2')
 
 class MenuForm(forms.ModelForm):
-    menu = forms.ImageField(label='Menu')    
+    menu_image = forms.ImageField(label='Menu Image')    
+    
     class Meta:
         model = MenuImage
         fields = ('menu_image', ) 

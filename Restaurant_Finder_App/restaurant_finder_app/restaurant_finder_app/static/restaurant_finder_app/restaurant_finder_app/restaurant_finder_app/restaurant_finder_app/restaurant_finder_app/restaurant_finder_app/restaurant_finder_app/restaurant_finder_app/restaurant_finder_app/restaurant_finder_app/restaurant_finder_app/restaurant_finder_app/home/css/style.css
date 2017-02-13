@@ -1,0 +1,32 @@
+<style>
+* {
+    box-sizing: border-box;
+}
+.main-content{
+    min-height: 330px;
+        background: #dbdfe5;
+}
+
+.collection-flex-container {
+    display: -webkit-flex;
+    display: flex;
+    width: 800px;
+    height: 350px;
+    flex-direction: row-reverse;
+}
+
+.collection-flex-item {
+    background-color: cornflowerblue;
+    width: 200px;
+    height: 150px;
+    margin: 10px;
+}
+
+.footer {
+    background-color: #0099cc;
+    color: #ffffff;
+    text-align: center;
+    font-size: 12px;
+    padding: 15px;
+}
+</style>

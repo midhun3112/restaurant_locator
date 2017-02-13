@@ -1,32 +1,188 @@
-<style>
-* {
+<style> * {
     box-sizing: border-box;
 }
-.main-content{
-    min-height: 330px;
-        background: #dbdfe5;
+
+h1.ui.header .sub.header,
+h2.ui.header .sub.header {
+    font-size: 1.14285714rem;
 }
 
-.collection-flex-container {
-    display: -webkit-flex;
-    display: flex;
-    width: 800px;
-    height: 350px;
-    flex-direction: row-reverse;
+.ui.header .sub.header,
+.ui.small.header .sub.header {
+    font-size: 1rem;
 }
 
-.collection-flex-item {
-    background-color: cornflowerblue;
-    width: 200px;
-    height: 150px;
-    margin: 10px;
+.ui.header .sub.header {
+    display: block;
+    font-weight: 400;
+    padding: 0;
+    margin: 2px 0 0;
+    line-height: 1.2em;
+    color: #89959B;
+}
+
+.ui.segment {
+    position: relative;
+    background: #FFF;
+    box-shadow: none;
+    margin: 1rem 0;
+    padding: 1em;
+    border-radius: .28571429rem;
+    border: 1px solid #e7e7e7;
+}
+
+.heading {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-height: 40px;
+}
+
+.red {
+    color: #cb202d;
+}
+
+.white {
+    color: #ffffff;
+}
+
+.bgwhite {
+    background-color: #ffffff;
+}
+
+.ta-center,
+.tac {
+    text-align: center;
+}
+
+.container,
+.main_container {
+    background-color: #F3F3F3;
+}
+
+.collection_grid {
+    height: 120px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 0px 5px 0px;
+}
+
+.collections-grid .hp.description {
+    max-height: 50px;
+}
+
+.collections-grid .description,
+.collections-grid .heading {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-height: 40px;
+}
+
+.collections-grid .description {
+    line-height: 16px;
+    font-size: 14px;
+}
+
+.collections-grid .heading {
+    font-size: 17px;
+}
+
+.height100 {
+    height: 100% !important;
+}
+
+.noPadding {
+    padding: 0 !important;
+}
+
+.noMargin {
+    margin: 0 !important;
+}
+
+.overflowHidden {
+    overflow: hidden !important;
 }
 
 .footer {
+    margin: 25;
+    border-radius: 10;
     background-color: #0099cc;
     color: #ffffff;
     text-align: center;
     font-size: 12px;
     padding: 15px;
 }
+
+.menu-card {
+    background-color: white;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+}
+
+.coll_detail {
+    max-height: 120px;
+    overflow: hidden;
+}
+
+.ml5 {
+    margin-left: 5px;
+}
+
+.mr20 {
+    margin-right: 20px;
+}
+
+.pt10,
+.ptop0 {
+    padding-top: 10px;
+}
+
+.pl10 {
+    padding-left: 10px;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.ln20 {
+    line-height: 20px;
+}
+
+.fontsize4 {
+    font-size: 14px;
+}
+
+.zblack {
+    color: #33373D;
+}
+
+.mt5 {
+    margin-top: 5px;
+}
+
+.mbot-container, .pos-relative, .relative {
+    position: relative;
+}
+
+.restaurant_grid_cover_image {
+    background-size: cover;
+    height: 150px;
+    display: block;
+    border-radius: 4px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#myPopoverContent {display: none; float: right;}
+.popover{
+    width:700px;   
+}
+
+#test {margin-left: 250px;}
+
 </style>

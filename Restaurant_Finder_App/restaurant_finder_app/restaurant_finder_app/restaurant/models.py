@@ -203,9 +203,9 @@ class MenuImage(models.Model):
         Restaurant, on_delete=models.CASCADE, null=True)
 
     class Meta:
-        default_related_name = 'menu'
-        verbose_name = _('Menu')
-        verbose_name_plural = _('Menu')
+        default_related_name = 'menu_image'
+        verbose_name = _('MenuImage')
+        verbose_name_plural = _('MenuImages')
 
-    def __str__(self):
-        return self.menu_image
+    # def __unicode__(self):
+    #     return unicode(self.image_location)

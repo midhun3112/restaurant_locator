@@ -1,6 +1,8 @@
 {% extends "base.html" %} {% load staticfiles %} {% block title %} Home {% endblock %} {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}" /> {% endblock %} {% block javascript %}
-<script type="text/javascript" src="{% static 'home/js/click.js' %}"></script>
+<script type="text/javascript" src="{% static 'add_restaurant/js/jquery.formset.js' %}"></script>
+<script type="text/javascript" src="{% static 'add_restaurant/js/click.js' %}"></script>
+
 {% endblock %}{% block header %} {% include "header.html" %} {% endblock %} {% block content %}
 <div class="container">
     <div class="row">
@@ -10,22 +12,30 @@
             {% endif %}
             <p>
                 <div class="form-horizontal">
-                    <form method="post" action="{% url 'add_restaurant' %}" " enctype="multipart/form-data " role="form ">{% csrf_token %}
+                    <form method="post" action="{% url 'add_restaurant' %}" enctype="multipart/form-data" role="form ">{% csrf_token %}
 
                 <div class="form-group row {% if form.restaurant_name.errors %}has-error{% endif %} ">
-		           <label for="id_restaurant_name " class="col-sm-3 control-label ">Restaurant Name:</label>
+		           <label for="id_restaurant_name " class="col-sm-3 control-label ">Menu Image:</label>
 		           <div class="col-lg-5 ">
-		            {{ formset.management_form }}
-					    <table>
-					        {% for form in menuformset %}
-					        {{ form }}
-					        {% endfor %}
-					    </table>
-		            {% if form.restaurant_name.errors %}
-		              <span class="help-block ">
-		                {% for error in form.restaurant_name.errors %}{{ error }}{% endfor %}
-		              </span>
-		            {% endif %}
+
+		            {{ menuformset.management_form }}
+
+				    {% for menu_form in menuformset %}
+				        <div class="menu-image-formset">
+				            {{ menu_form.menu_image }}
+				            {% if menu_form.menu_image.errors %}
+				                {% for error in menu_form.menu_image.errors %}
+				                    {{ error|escape }}
+				                {% endfor %}
+				            {% endif %}
+				        </div>
+				    {% endfor %}
+
+				    {% if menuformset.non_form_errors %}
+				        {% for error in menuformset.non_form_errors %}
+				            {{ error|escape }}
+				        {% endfor %}
+				    {% endif %}
 		          </div>
 		        </div>
 
@@ -197,7 +207,7 @@
 		        
 		        <div class="form-group row ">
 		          <div class="col-sm-5 col-sm-offset-3 ">
-		            <input type="submit " value="Add Restaurant " class="btn btn-primary " />
+		            <input type="submit" value="Add Restaurant" class="btn btn-primary"/>
 		          </div>
 		        </div>
 		      </form>
