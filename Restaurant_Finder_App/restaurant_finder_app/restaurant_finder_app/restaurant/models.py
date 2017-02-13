@@ -192,3 +192,20 @@ class Category(models.Model):
 
     def __str__(self):
         return '%s' % (self.name)
+
+
+class MenuImage(models.Model):
+    menu_image = models.ImageField(
+        upload_to='images/menu_pic/',
+        default='images/menu_pic/menu.jpg'
+    )
+    restaurant = models.ForeignKey(
+        Restaurant, on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        default_related_name = 'menu'
+        verbose_name = _('Menu')
+        verbose_name_plural = _('Menu')
+
+    def __str__(self):
+        return self.menu_image

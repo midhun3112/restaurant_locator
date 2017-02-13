@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Restaurant, WeekDay, RestaurantTiming, Collection, Category, EstablishmentType, Cuisine, CostForTwo
+from .models import Restaurant, WeekDay, RestaurantTiming, Collection, Category, EstablishmentType, Cuisine, CostForTwo, MenuImage
 
 admin.site.register(Restaurant)
 admin.site.register(WeekDay)
@@ -11,3 +11,4 @@ admin.site.register(Category)
 admin.site.register(EstablishmentType)
 admin.site.register(Cuisine)
 admin.site.register(CostForTwo)
+admin.site.register(MenuImage)

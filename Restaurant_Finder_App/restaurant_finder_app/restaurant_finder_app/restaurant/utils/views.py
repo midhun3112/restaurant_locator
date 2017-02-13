@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from restaurant.models import Restaurant, Collection, Category
+from restaurant.models import Restaurant, Collection, Category, MenuImage
 import operator
 from django.db.models import Q
 from functools import reduce
-from restaurant.utils.forms import AddRestaurantForm
+from restaurant.utils.forms import AddRestaurantForm, MenuForm
 from django.http import HttpResponseRedirect
+from django.forms import formset_factory
+from django.forms import modelformset_factory
 
 
 # Create your views here.
@@ -82,26 +84,32 @@ def category_list_view(request, category_id):
 
 
 def add_restaurant(request):
+    MenuFormSet = modelformset_factory(MenuImage,
+                                        form=MenuForm, extra=5)
     if request.method == 'POST':
         form = AddRestaurantForm(request.POST, request.FILES)
+        menuformset = MenuFormSet(request.POST, request.FILES,
+                               queryset=MenuImage.objects.none())
         if form.is_valid():
-            print (form, 11111111)
-            print (dir(form))
-            print (form.cleaned_data['category'], 333333333)
             categories = form.cleaned_data['category']
             restaurant = form.save(commit=True)
             print(restaurant, type(restaurant))
             for category in categories:
                 print(category, type(category))
                 category.restaurant.add(restaurant)
+            for menuform in menuformset.cleaned_data:
+                menu_image = menuform['menu']
+                photo = MenuImage(post=form, image=menu_image)
+                photo.save()
             return HttpResponseRedirect('/')
         else:  # invalid case
             print (form.errors)
     # if a GET (or any other method) we'll create a blank form
     else:
         form = AddRestaurantForm()
+        menuformset = MenuFormSet(queryset=MenuImage.objects.none())
 
-    return render(request, 'add_restaurant.html', {'form': form})
+    return render(request, 'add_restaurant.html', {'form': form,'menuformset': menuformset})
 
 
 def view_restaurant(request, restaurant_id):

@@ -82,7 +82,7 @@
                                                                     {% if working_day|slugify  == today|slugify  %}
                                                                         <span class="fontsinze5 zgreen">Open today</span>
                                                                         <div class="medium">
-                                                                            Today&nbsp;&nbsp;9:30 AM to 11:30 AM
+                                                                            Today&nbsp;&nbsp;{{restaurant_timing.start_time}} to {{restaurant_timing.end_time}}
                                                                         </div>
                                                                         <!-- {% now "U" as current_time %}
                                                                         {{ restaurant_timing.start_time|time:"H" }}
