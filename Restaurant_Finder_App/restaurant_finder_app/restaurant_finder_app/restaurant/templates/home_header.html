@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="zimagery" style="background-image: url({{MEDIA_URL}}images/home/homepage_cover_image.jpg);; background-size: cover; height:360px;">
+	<div class="zimagery-overlay" style="background: rgba(0,0,0,0.4); height:360px;">
+		
+		<div class="row">
+			<header>				
+				<button class="login" type="button" onclick="" style="">Log in</button>
+			</header>
+				<div class="logo--home">
+					<a class="logo--header"  href="/"  style="display: block;"href="#" title="">
+					<img src="{{ MEDIA_URL }}images/home/company_logo.jpg" alt="Find the best restaurants, cafés, and bars in Kochi" 
+					style="width:144px; padding-top:130px;">
+					</a>
+				</div>
+				<h1 class="h-city-home-title">Find the best restaurants, cafés, and bars in Kochi    </h1>
+		</div>
+			
+	</div>
+</div>
+{% endblock %}

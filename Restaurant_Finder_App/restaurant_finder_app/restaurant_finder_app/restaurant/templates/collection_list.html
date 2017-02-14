@@ -21,7 +21,7 @@
                     <div class="col-md-4 collection_grid" onclick="collectionClick({{collection.id}})">
                         <div class="height100 menu-card ">
                             <div class="col-xs-4 height100 noPadding overflowHidden">
-                                <img style="float:left" src="{{ MEDIA_URL }}{{ collection.collection_image_thumbnail }}" class="img-responsive" alt="{{collection.collection_description}}" width="100%" height="100%" />
+                                <img style="float:left" src="{{ MEDIA_URL }}{{ collection.collection_image_thumbnail }}" class="img-responsive height100" alt="{{collection.collection_description}}" width="100%" height="100%" />
                             </div>
                             <div class="ptop0 mr20 ml5 coll_detail pl10" text-overflow: ellipsis;>
                                 <div class="heading bold ln20">{{collection.collection_name}}</div>
@@ -35,4 +35,7 @@
         </div>
     </div>
 </div>
+{% block footer %} 
+{% include "footer.html" %}
+{% endblock %}
 {% endblock %}

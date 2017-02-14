@@ -18,7 +18,7 @@
                  Create and browse lists of the finest restaurants          
                 </span>
                 </span>    
-              </h2>
+                </h2>
                 <div class="row">
                     {% if restaurant_list %} {% for restaurant in restaurant_list %}
                     
@@ -55,4 +55,7 @@
         </div>
     </div>
 </div>
+{% block footer %} 
+{% include "footer.html" %}
+{% endblock %}
 {% endblock %}

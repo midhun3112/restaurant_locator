@@ -44,9 +44,12 @@ def home_page_view(request):
     restaurant_list = Restaurant.objects.all()
     collection_list = Collection.objects.all()
     category_list = Category.objects.all()
+    trending_restaurant_collection = Collection.objects.get(pk=6)
+    trending_restaurants = trending_restaurant_collection.restaurant.all()
     context = {'restaurant_list': restaurant_list,
                'collection_list': collection_list[:4],
-               'category_list': category_list}
+               'category_list': category_list,
+               'trending_restaurant_list': trending_restaurants[:4]}
     return render(request, 'home_page.html', context)
 
 

@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% load staticfiles %} {% block title %} Home {% endblock %} {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}" /> {% endblock %} {% block javascript %}
 <script type="text/javascript" src="{% static 'home/js/click.js' %}"></script>
-{% endblock %} {% block content %}
+{% endblock %} {% block header %} {% include "home_header.html" %} {% endblock %}{% block content %}
 <div class="main_container">
     <div class="container">
         <div class="row">
@@ -10,7 +10,7 @@
                 <span class="segment_heading">Collections</span>
                 <span class="sub header">
                 <span class="segment_sub_heading">
-                  Explore curated lists of top restaurants, cafes, pubs, and bars in and around Mumbai, based on  trends                               
+                  Explore curated lists of top restaurants, cafes, pubs, and bars in and around Kochi, based on  trends                               
                 </span>
                 </span>    
               </h2>
@@ -19,9 +19,9 @@
                     <div class="col-md-6 collection_grid" onclick="collectionClick({{collection.id}})">
                         <div class="height100 menu-card ">
                             <div class="col-xs-4 height100 noPadding overflowHidden">
-                                <img style="float:left" src="{{ MEDIA_URL }}{{ collection.collection_image_thumbnail }}" class="img-responsive" alt="{{collection.collection_description}}" width="100%" height="100%" />
+                                <img style="float:left" src="{{ MEDIA_URL }}{{ collection.collection_image_thumbnail }}" class="img-responsive height100" alt="{{collection.collection_description}}" width="100%" height="100%" />
                             </div>
-                            <div class="ptop0 mr20 ml5 coll_detail plef10" text-overflow: ellipsis;>
+                            <div class="ptop0 mr20 ml5 coll_detail pl10" text-overflow: ellipsis;>
                                 <div class="heading bold ln20">{{collection.collection_name}}</div>
                                 <div class="zblack fontsize4 description mt5  hp ">{{collection.collection_description}}</div>
                             </div>
@@ -30,37 +30,61 @@
                     {% endfor %} {% endif %}
                 </div>
                 <div class="col-sm-12 " onclick="viewAllCollectionsClick()">
-                    <div class="ui segment red tac">All collections in Mumbai
+                    <div class="ui segment red tac">All collections in Kochi
                     </div>
                 </div>
             </div>
             <div class="col-sm-4 ">
                 <h2 class="ui header">
-                <span class="segment_heading">Order Food Online</span>
+                <span class="segment_heading">Trending this week</span>
                 <span class="sub header">
                 <span class="segment_sub_heading">
-                  From the best restaurants delivering to your doorstep                               
+                  The most popular restaurants in town this week                              
                 </span>
                 </span>    
               </h2>
-                <div class="well " style="min-height:333px; ">1
+                <div class="row pt10 bgwhite" style="min-height:333px;">
+                    {% if trending_restaurant_list %} {% for trending_restaurant in trending_restaurant_list %}
+                    <div class="col-md-6 trending_restaurant_grid" onclick="restaurantClick({{trending_restaurant.id}})">
+                        <div class="height100 menu-card ">
+                            <div class="col-xs-12 height100 noPadding overflowHidden">
+                                <img style="float:left" src="{{ MEDIA_URL }}{{ trending_restaurant.restaurant_image }}" class="img-responsive height100" alt="{{trending_restaurant.restaurant_name}}" width="100%" height="100%" />
+                            </div>
+                            <div class="mr20 coll_detail pl10 ta-center" text-overflow: ellipsis;>
+                                <div class="heading bold ln20">{{trending_restaurant.restaurant_name}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %} {% endif %}
+                    <div class=" col-md-12 pt20" onclick="collectionClick(6)">
+                        <div class="ui fluid green fluid button">View All Trending Restaurants!</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row ">
-            {% if category_list %} {% for category in category_list %}
-            <div class="col-sm-2" onclick="categoryClick({{ category.id}}) ">
-                <img src="{{ MEDIA_URL }}{{category.category_image}}" class="img-rounded center-block " alt="Cinque Terre " width="25% " height="25%" " />
-            <div class="text-center ">{{category.name}}</div>
+        <div class="row">
+            <h2 class="ui header">
+                <span class="segment_heading">Quick Searches</span>
+                <span class="sub header">
+                     <span class="segment_sub_heading">
+                        Discover restaurants by type of meal                    
+                     </span>
+                </span>
+            </h2>
+            <div class="row category-block">
+                {% if category_list %} {% for category in category_list %}
+                <div class="col-sm-2" onclick="categoryClick({{ category.id}})">
+                    <img src="{{ MEDIA_URL }}{{category.category_image}}" class="img-rounded center-block" alt="Cinque Terre" width="25% " height="25%" " />
+                <div class="text-center">{{category.name}}</div>
+                </div>
+                {% endfor %}
+                {% endif %}
             </div>
-          {% endfor %}
-      {% endif %}
       </div>
-
-  <!--     <div class="footer ">
-        <p>Resize the browser window to see how the content respond to the resizing.</p>
-      </div> -->
   </div>    
 </div>
+{% block footer %} 
+{% include "footer.html" %}
+{% endblock %}
 
 {% endblock %}

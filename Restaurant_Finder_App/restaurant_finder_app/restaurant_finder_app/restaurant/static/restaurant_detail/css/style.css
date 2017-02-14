@@ -3,3 +3,17 @@
     display: inline-block;
     margin-top: 20px;
 }
+
+#openingTimesPopoverContent {
+    display: none;
+    float: right;
+}
+
+.popover {
+    width: 700px;
+}
+
+
+#see-more {
+    margin-left: 250px;
+}
