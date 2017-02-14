@@ -1,8 +1,9 @@
 from django import forms
 from authentication.models import User, UserProfile
 from django.utils.translation import gettext as _
-from restaurant.models import Restaurant, Category, MenuImage
+from restaurant.models import Restaurant, Category, MenuImage, WeekDay, RestaurantTiming
 from django.forms.formsets import BaseFormSet
+
 
 class AddRestaurantForm(forms.ModelForm):
     restaurant_name = forms.CharField(widget=forms.TextInput(
@@ -37,9 +38,20 @@ class AddRestaurantForm(forms.ModelForm):
         fields = ('restaurant_name', 'category', 'restaurant_image', 'restaurant_image_thumbnail', 'address_1',
                   'address_2', 'locality', 'city', 'state', 'pincode', 'country', 'phone_number_1', 'phone_number_2')
 
+
 class MenuForm(forms.ModelForm):
-    menu_image = forms.ImageField(label='Menu Image')    
-    
+    menu_image = forms.ImageField(label='Menu Image')
+
     class Meta:
         model = MenuImage
-        fields = ('menu_image', ) 
+        fields = ('menu_image', )
+
+
+class RestaurantTimingsForm(forms.ModelForm):
+    working_days = forms.ModelChoiceField(queryset=WeekDay.objects.all(), empty_label="(Nothing)")
+    start_time = forms.TimeField(widget=forms.TimeInput(format='%H:%M'))
+    end_time = forms.TimeField(widget=forms.TimeInput(format='%H:%M'))
+
+    class Meta:
+        model = RestaurantTiming
+        fields = ('working_days', 'start_time', 'end_time' )

@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from restaurant.models import Restaurant, Collection, Category, MenuImage
+from restaurant.models import Restaurant, Collection, Category, MenuImage, RestaurantTiming
 import operator
 from django.db.models import Q
 from functools import reduce
-from restaurant.utils.forms import AddRestaurantForm, MenuForm
+from restaurant.utils.forms import AddRestaurantForm, MenuForm, RestaurantTimingsForm
 from django.http import HttpResponseRedirect
 from django.forms import modelformset_factory
 
@@ -87,10 +87,14 @@ def category_list_view(request, category_id):
 def add_restaurant(request):
     MenuFormSet = modelformset_factory(
         MenuImage, form=MenuForm, extra=3, fields=('menu_image',),)
+    RestaurantTimingFormSet = modelformset_factory(
+        RestaurantTiming, form=RestaurantTimingsForm, extra=5, fields=('working_days', 'start_time', 'end_time',),)
     if request.method == 'POST':
         form = AddRestaurantForm(request.POST, request.FILES)
         menuformset = MenuFormSet(request.POST, request.FILES,
                                   queryset=MenuImage.objects.none())
+        restaurantTimingsformset = RestaurantTimingFormSet(request.POST, request.FILES,
+                                  queryset=RestaurantTiming.objects.none())
         if form.is_valid() and menuformset.is_valid():
             categories = form.cleaned_data['category']
             restaurant = form.save(commit=True)
@@ -105,16 +109,29 @@ def add_restaurant(request):
                         restaurant=restaurant, menu_image=image)
                     picture.save()
 
+            for restaurantTimings in restaurantTimingsformset:
+                if restaurantTimings.is_valid():
+                    working_days = menuform.cleaned_data.get('working_days')
+                    start_time = menuform.cleaned_data.get('start_time')
+                    end_time = menuform.cleaned_data.get('end_time')
+                    timing = RestaurantTiming(
+                        restaurant=restaurant, working_days=working_days, start_time=start_time, end_time=end_time)
+                    timing.save()
+
             return HttpResponseRedirect('/')
         else:  # invalid case
             print (form.errors)
             print(menuformset.errors)
+            print(restaurantTimingsformset.errors)
+
     # if a GET (or any other method) we'll create a blank form
     else:
         form = AddRestaurantForm()
         menuformset = MenuFormSet(queryset=MenuImage.objects.none())
+        restaurantTimingsformset = RestaurantTimingFormSet(queryset=RestaurantTiming.objects.none())
 
-    return render(request, 'add_restaurant.html', {'form': form, 'menuformset': menuformset})
+
+    return render(request, 'add_restaurant.html', {'form': form, 'menuformset': menuformset, 'restaurantTimingsformset': restaurantTimingsformset})
 
 
 def view_restaurant(request, restaurant_id):

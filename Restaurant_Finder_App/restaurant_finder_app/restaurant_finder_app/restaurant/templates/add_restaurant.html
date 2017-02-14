@@ -15,31 +15,6 @@
 	                <div class="form-horizontal">
 	                    <form method="post" action="{% url 'add_restaurant' %}" enctype="multipart/form-data" role="form ">{% csrf_token %}
 
-	                <div class="form-group row {% if form.restaurant_name.errors %}has-error{% endif %} ">
-			           <label for="id_restaurant_name " class="col-sm-3 control-label ">Menu Image:</label>
-			           <div class="col-lg-5 ">
-
-			            {{ menuformset.management_form }}
-
-					    {% for menu_form in menuformset %}
-					        <div class="menu-image-formset">
-					            {{ menu_form.menu_image }}
-					            {% if menu_form.menu_image.errors %}
-					                {% for error in menu_form.menu_image.errors %}
-					                    {{ error|escape }}
-					                {% endfor %}
-					            {% endif %}
-					        </div>
-					    {% endfor %}
-
-					    {% if menuformset.non_form_errors %}
-					        {% for error in menuformset.non_form_errors %}
-					            {{ error|escape }}
-					        {% endfor %}
-					    {% endif %}
-			          </div>
-			        </div>
-
 			        <div class="form-group row {% if form.restaurant_name.errors %}has-error{% endif %} ">
 			           <label for="id_restaurant_name " class="col-sm-3 control-label ">Restaurant Name:</label>
 			           <div class="col-lg-5 ">
@@ -85,6 +60,74 @@
 			                {% for error in form.category.errors %}{{ error }}{% endfor %}
 			              </span>
 			            {% endif %}
+			          </div>
+			        </div>
+
+			        <div class="form-group row {% if form.restaurant_name.errors %}has-error{% endif %} ">
+			           <label for="id_restaurant_name " class="col-sm-3 control-label ">Menu Image:</label>
+			           <div class="col-lg-5 ">
+
+			            {{ menuformset.management_form }}
+
+					    {% for menu_form in menuformset %}
+					        <div class="menu-image-formset">
+					            {{ menu_form.menu_image }}
+					            {% if menu_form.menu_image.errors %}
+					                {% for error in menu_form.menu_image.errors %}
+					                    {{ error|escape }}
+					                {% endfor %}
+					            {% endif %}
+					        </div>
+					    {% endfor %}
+
+					    {% if menuformset.non_form_errors %}
+					        {% for error in menuformset.non_form_errors %}
+					            {{ error|escape }}
+					        {% endfor %}
+					    {% endif %}
+			          </div>
+			        </div>
+
+			        <div class="form-group row {% if form.restaurant_name.errors %}has-error{% endif %} ">
+			           <label for="id_restaurant_name " class="col-sm-3 control-label ">Menu Image:</label>
+			           <div class="col-lg-5 ">
+
+			            {{ restaurantTimingsformset.management_form }}
+
+					    {% for restaurantTimings in restaurantTimingsformset %}
+					    	<div class="menu-image-formset">
+					            {{ restaurantTimings.working_days }}
+					            {% if restaurantTimings.working_days.errors %}
+					                {% for error in restaurantTimings.working_days.errors %}
+					                    {{ error|escape }}
+					                {% endfor %}
+					            {% endif %}
+					        </div>
+
+					        <div class="menu-image-formset">
+					            {{ restaurantTimings.start_time }}
+					            {% if restaurantTimings.start_time.errors %}
+					                {% for error in restaurantTimings.start_time.errors %}
+					                    {{ error|escape }}
+					                {% endfor %}
+					            {% endif %}
+					        </div>
+
+					       <div class="menu-image-formset">
+					            {{ restaurantTimings.end_time }}
+					            {% if restaurantTimings.end_time.errors %}
+					                {% for error in restaurantTimings.end_time.errors %}
+					                    {{ error|escape }}
+					                {% endfor %}
+					            {% endif %}
+					        </div>
+					    {% endfor %}
+
+					    {% if restaurantTimingsformset.non_form_errors %}
+					        {% for error in restaurantTimingsformset.non_form_errors %}
+					            {{ error|escape }}
+					        {% endfor %}
+					    {% endif %}
 			          </div>
 			        </div>
 
