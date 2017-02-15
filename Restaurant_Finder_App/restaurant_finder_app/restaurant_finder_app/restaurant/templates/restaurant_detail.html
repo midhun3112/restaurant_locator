@@ -1,33 +1,34 @@
 {% extends "base.html" %} {% load staticfiles %} {% block title %} DinersQ Collections {% endblock %} {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'restaurant_detail/css/style.css' %}" /> 
+<link rel="stylesheet" type="text/css" href="{% static 'base/css/jquery.fancybox.css' %}" /> 
 <link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}" />{% endblock %} {% block javascript %}
 <script type="text/javascript" src="{% static 'restaurant_detail/js/click.js' %}"></script>
+<script type="text/javascript" src="{% static 'base/js/jquery.fancybox.min.js' %}"></script>
 {% endblock %} {% block header %} {% include "header.html" %} {% endblock %} {% block content %}
 <div class="main_container">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12" style="border:none">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="">
-                            <img style="float:left" src="{{ MEDIA_URL }}{{ restaurant.restaurant_image }}" class="img-responsive" alt="{{restaurant.restaurant_name }}" width="100%" height="100%" />
+        <div >
+                <div class="row  ">
+                        <div class="row ui segment">
+                            <div class="">
+                                <img class="height300" src="{{ MEDIA_URL }}{{ restaurant.restaurant_image }}" class="img-responsive" alt="{{restaurant.restaurant_name }}" width="100%" height="100%" />
+                            </div>
+                            <h2 class="ui header">
+                            <span class="segment_heading">{{restaurant.restaurant_name}}   </span>
+                            <span class="sub header">
+                            <span class="segment_sub_heading">
+                             {{restaurant.locality}}             
+                            </span>
+                            </span>    
+                            </h2>
                         </div>
-                        <h2 class="ui header">
-                        <span class="segment_heading">{{restaurant.restaurant_name}}   </span>
-                        <span class="sub header">
-                        <span class="segment_sub_heading">
-                         {{restaurant.locality}}             
-                        </span>
-                        </span>    
-                        </h2>
      
-                        <div class="row">
-                                <div class="row ui segment">
+                        <div class="row ui segment">
                                     <div class="col-sm-4 pl0 pr20">
                                         <div class="mbot">
                                             <div class="res-main-phone p-relative phone-details clearfix" id="resinfo-phone" title="{{restaurant.restaurant_name}}">
                                                 <div class="phone" id="phoneNoString">
-                                                    <h2 aria-label="Phone number" class="mb5" role="heading" tabindex="0">Phone number</h2>
+                                                    <h4 aria-label="Phone number" class="mb5" role="heading" tabindex="0">Phone number</h4>
                                                     <span class="tel left res-tel">
                                                     <span class="fontsize2 bold zgreen">
                                                     <span aria-label="{{restaurant.phone_number_1}}" class="tel" tabindex="0">{{restaurant.phone_number_1}}
@@ -40,17 +41,22 @@
                                         </div>
                                         <div class="mbot">
                                             <div class="res-info-group clearfix">
-                                                <h2 class="mt0 mb5" tabindex="0">Cuisines</h2>
+                                                <h4 class="mt0 mb5" tabindex="0">Cuisines</h4>
+                                                {% if restaurant.cuisine.all %}
                                                 <div class="res-info-cuisines clearfix">
-                                                    <a class="zred" href="https://www.zomato.com/kochi/restaurants/biryani" title="View all Biryani Restaurants in Kochi">Biryani</a>
+                                                    {% for cuisine in restaurant.cuisine.all %}
+                                                        <a class="zred" href=" /search/?search_query={{cuisine.cuisine_name}}" title="View all {{cuisine.cuisine_name}} Restaurants in Kochi">{{cuisine.cuisine_name}}</a>
+                                                    {% endfor %}
                                                 </div>
+                                                {% endif%}
+
                                             </div>
                                         </div>
                                         <div class="mbot mtop">
                                             <div class="res-info-group clearfix">
                                                 <div class="res-info-detail">
                                                     <div tabindex="0">
-                                                        <h2 class="left mt0 mb5">Cost&nbsp;</h2>
+                                                        <h4 class="left mt0 mb5">Cost&nbsp;</h4>
                                                         <div aria-label="The cost" class="tooltip-w left" tabindex="0">
                                                             <span class="res-info-detail-icon" data-icon="|"></span>
                                                         </div>
@@ -75,33 +81,17 @@
                                                 <div class="res-info-detail">
                                                     <div class="res-info-timings">
                                                         <div class="clearfix" tabindex="0">
-                                                            <h2 class="mt0 mb5 inlineblock">Opening hours</h2>
-                                                            {% with restaurant.restaurant_timing.all as restaurant_timings %} 
-                                                            {% for restaurant_timing in restaurant_timings %}
-                                                                {% now "l" as today %}
-                                                                {% with restaurant_timing.working_days as working_day %}
-                                                                    {% if working_day|slugify  == today|slugify  %}
-                                                                        <span class="fontsinze5 zgreen">Open today</span>
-                                                                        <div class="medium">
-                                                                            Today&nbsp;&nbsp;{{restaurant_timing.start_time}} to {{restaurant_timing.end_time}}
-                                                                        </div>
-                                                                        <!-- {% now "U" as current_time %}
-                                                                        {{ restaurant_timing.start_time|time:"H" }}
-                                                                        {{the_time}}
-                                                                        {% if restaurant_timing.start_time < current_time %}
-                                                                        {% endif %} --> 
-                                                                    {% else %}
-                                                                        <span class="fontsinze5 zgreen">Closed</span>
-                                                                        
-                                                                    {% endif %} 
-                                                                {% endwith %}
-                                                            {% endfor %} {% endwith %}
-                                                            
-                                                            <div>
-                                                                <!-- <div class="left zred expand cursor-pointer user-select-none fontsize5">
-                                                                    See more
-                                                                </div> -->
+                                                            <h4 class="mt0 mb5 inlineblock">Opening hours</h4>
+                                                            {% if isOpened %}
+                                                              <span class="fontsinze5 zgreen">Open today</span>
+                                                                 <div class="medium">
+                                                                     {{ open_time }}
+                                                                 </div>
+                                                             {% else %}
+                                                             <span class="fontsinze5 zgreen">Closed</span>  
 
+                                                             {% endif %} 
+                                                            <div>
                                                                 <div id="openingTimesPopoverContent">
                                                                    <table border="1" style="width:100%">
                                                                        {% with restaurant.restaurant_timing.all as restaurant_timings %} {% for restaurant_timing in restaurant_timings %}
@@ -121,51 +111,33 @@
                                             </div>
                                         </div>
                                         <div class="mb5">
-                                            <h2 aria-label="Address" tabindex="0">Address</h2>
+                                            <h4 aria-label="Address" tabindex="0">Address</h4>
                                         </div>
                                         <div class="mbot0">
                                             <div class="borderless res-main-address">
                                                 <div class="resinfo-icon">
-                                                    <span>Between <span>Chittoor Road</span> and KSRTC Bus Stand, CP Ummer Road, MG, Chittoor Road, Kochi</span>
+                                                    <span>{{restaurant.address_1}} <span>{{restaurant.address_2}} </span> {{restaurant.locality}} <span>{{restaurant.city}} </span>  <span>{{restaurant.state}} </span> </span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mbot0">
-                                            <div class="resbox__main--row">
-                                                <div class="resmap pos-relative mt5 mb5">
-                                                    <a class="res-map-link" href="https://www.zomato.com/kochi/pandaris-biriyani-chittor-road/maps#tabtop">Pandari's Biriyani address, Pandari's Biriyani location</a>
-                                                    <div id="res-map-canvas">
-                                                        <div class="resmap-text-container">
-                                                            Get Directions
-                                                        </div>
-                                                        <div class="resmap-img" data-is-zomato="true" data-url="https://www.zomato.com/php/staticmap?center=9.9803952000,76.2876959000&amp;size=240x150&amp;maptype=zomato\&amp;markers=9.9803952000,76.2876959000,pin_res32|&amp;sensor=false&amp;scale=2&amp;zoom=14&amp;language=en" style="background: url(&quot;https://www.zomato.com/php/staticmap?center=9.9803952000,76.2876959000&amp;size=240x150&amp;maptype=zomato&amp;markers=9.9803952000,76.2876959000,pin_res32|&amp;sensor=false&amp;scale=2&amp;zoom=14&amp;language=en&quot;) center center / cover no-repeat rgb(244, 244, 244); width: 100%; height: 100%;"></div>
-                                                    </div>
-                                                    <script type="text/javascript">
-                                                    var mapData = {
-                                                        lat: 9.9803952000,
-                                                        lon: 76.2876959000
-                                                    };
-                                                    </script>
-                                                </div>
-                                            </div>
-                                        </div>
+       
                                     </div>
-                                    <div class="col-sm-4 pl20 pr20">
-                                        <div class="res-header-claims mbot0 ptop0">
-                                            <div class="hom">
-                                                <a class="fontsize5 tooltip_formatted cursor-pointer grey-text" id="resinfo-error" tabindex="0">Report Error</a>
-                                            </div><a class="tooltip_formatted grey-text claim-your-listing cursor-pointer fontsize5" data-res-id="95358" data-res_name="Pandari's Biriyani" rel="nofollow" tabindex="0">Claim this listing</a>
-                                        </div>
-                                    </div>
-                                </div>
                         </div>
-                        <div class="col-sm-12 " onclick="viewAllCollectionsClick()">
-                            <div class="ui segment red tac">All collections in Mumbai
+
+                    <div class="row ui segment">            
+                        <div class="col-sm-12 " style="min-height:333px;">
+                            {% if restaurant.menu_image.all %} {% for menu in restaurant.menu_image.all %}
+                            <div class="col-sm-3 height100">
+                                <a href="{{MEDIA_URL}}{{menu.menu_image}}" data-fancybox="group" data-caption="Caption #1">
+                                    <img src="{{ MEDIA_URL }}{{menu.menu_image}}" class="img-responsive height100" alt="" width="100%" height="100%" />
+                                </a>
                             </div>
+                            {% endfor %} {% endif %}
                         </div>
                     </div>
-                </div>
-            </div>
+
+                    </div>
+
         </div>
     </div>
 </div>

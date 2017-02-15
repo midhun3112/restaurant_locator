@@ -14,8 +14,3 @@ $('body').on('click', function (e) {
         }
     });
 });
-
-$('.menu-image-formset').formset({
-    addText: 'Add',
-    deleteText: 'Remove'
-});

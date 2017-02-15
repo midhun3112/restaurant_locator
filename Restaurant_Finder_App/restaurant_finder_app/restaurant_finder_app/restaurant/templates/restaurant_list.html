@@ -1,26 +1,11 @@
 {% extends "base.html" %} {% load staticfiles %} {% block title %} Home {% endblock %} {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}" /> {% endblock %} {% block javascript %}
 <script type="text/javascript" src="{% static 'home/js/click.js' %}"></script>
-{% endblock %}   {% block header %} 
-{% include "header.html" %}
-{% endblock %} {% block content %}
+{% endblock %} {% block header %} {% include "header.html" %} {% endblock %} {% block content %}
 <div class="main_container">
     <div class="container">
         <div class="row">
-            <div class="col-sm-2 ">
-               <h2 class="ui header">
-               <span class="segment_heading">Order Food Online</span>
-               <span class="sub header">
-               <span class="segment_sub_heading">
-                  From the best restaurants delivering to your doorstep                               
-               </span>
-               </span>    
-              </h2>
-               <div class="well " style="min-height:333px; ">1
-               </div>
-            </div>
-
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <h2 class="ui header">
                 <span class="segment_heading">Collections</span>
                 <span class="sub header">
@@ -29,45 +14,68 @@
                 </span>
                 </span>
               </h2>
-                <div class="row">
+                <div class="">
                     {% if restaurant_list %} {% for restaurant in restaurant_list %}
-                    <div class="col-sm-12 collection_grid" onclick="collectionClick({{collection.id}})">
-                        <div class="height100 menu-card ">
-                            <div class="col-xs-4 height100 noPadding overflowHidden">
-                                <img style="float:left" src="{{ MEDIA_URL }}{{ restaurant.restaurant_image_thumbnail }}" class="img-responsive" alt="{{restaurant.restaurant_name}}" width="100%" height="100%" />
-                            </div>
-                            <div class="ptop0 mr20 ml5 coll_detail plef10" text-overflow: ellipsis;>
-                                <div class="heading bold ln20">{{restaurant.restaurant_name}}</div>
-                                <div class="zblack fontsize4 description mt5  hp ">{{restaurant.restaurant_name}}</div>
-                            </div>
-<!--                             <div class="col-sm-12 " onclick="viewAllCollectionsClick()">
-	                    		<div class="ui segment red tac">All collections in Mumbai
-	                    		</div>
-               				</div> -->
+                    <div class="col-sm-12 " onclick="restaurantClick({{restaurant.id}})">
+                        <div class="menu-card ">
+                        
+                        <div class="row">                          
+                          <div class="col-xs-12">
+                              <div class="col-xs-4 height100 noPadding overflowHidden">
+                                  <img style="float:left" src="{{ MEDIA_URL }}{{ restaurant.restaurant_image_thumbnail }}" class="img-responsive height100" alt="{{restaurant.restaurant_name}}" width="100%" height="100%" />
+                              </div>
+                              <div class="col-xs-8   plef10" text-overflow: ellipsis;>
+                                  <div class="heading bold ln20">{{restaurant.restaurant_name}}</div>
+                                  <div class="zblack fontsize4 description mt5  hp ">{{restaurant.restaurant_name}}</div>
+                              </div>
+                          </div>
+                        </div>
+
+                        <div class="ui divider">
+                        </div>
+                            
+                        <div class="search-page-text clearfix">
+                          <div class="clearfix"><span class="col-sm-4  ttupper fontsize5 grey-text">Cuisines: </span>
+                                  <span class="col-sm-8 col-m-12 nowrap  pl0">
+                                  <a title="Kerala" href="https://www.zomato.com/kochi/restaurants/kerala">Kerala</a>,
+                                  </span>
+                          </div>
+                          <div class="res-cost clearfix">
+                                  <span class="col-sm-4  ttupper fontsize5 grey-text">Cost for two:</span>
+                                  <span class="col-sm-8 col-sm-8 pl0">₹900</span>
+                          </div>
+                          <div class="res-timing clearfix" title="11 AM to 11 PM (Mon-Sat), 9 AM to 11 PM (Sun)">
+                                    <span class="col-sm-4  ttupper   fontsize5  grey-text left">Hours:
+                                    </span>
+                                    <div class="col-sm-4  col-sm-8 pl0 search-grid-right-text ">
+                                        11 AM to 11 PM (Mon-Sat),9 AM to 11 PM (Sun)
+                                    </div>
+                                    <div class="clear"></div>
+                          </div>
+                        </div>
+
                         </div>
                     </div>
                     {% endfor %} {% endif %}
-                </div>
+                </div>                
             </div>
 
             <div class="col-sm-4 ">
                 <h2 class="ui header">
-	                <span class="segment_heading">Order Food Online</span>
-	                <span class="sub header">
-		                <span class="segment_sub_heading">
-		                  From the best restaurants delivering to your doorstep                               
-		                </span>
-	                </span>    
-              	</h2>
+                  <span class="segment_heading">Order Food Online</span>
+                  <span class="sub header">
+                    <span class="segment_sub_heading">
+                      From the best restaurants delivering to your doorstep                               
+                    </span>
+                  </span>    
+                </h2>
                 <div class="well " style="min-height:333px; ">1
                 </div>
             </div>
         </div>
-
-  <!--     <div class="footer ">
-        <p>Resize the browser window to see how the content respond to the resizing.</p>
-      </div> -->
-  </div>    
+    </div>
 </div>
-
+{% block footer %} 
+{% include "footer.html" %}
+{% endblock %}
 {% endblock %}

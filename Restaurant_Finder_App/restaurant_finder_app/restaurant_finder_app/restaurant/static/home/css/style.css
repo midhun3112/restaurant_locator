@@ -408,5 +408,28 @@ footer_horiz_list {
     transition: background .1s ease 0s;
 }
 
+.zgreen {
+    color: #099e44;
+}
+
+.height300 {
+    height: 299px !important;;
+}
+
+.ui.divider {
+    margin: .7rem 0;
+    line-height: 1;
+    height: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: rgba(0,0,0,.85);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 1rem;
+}
 
 </style>

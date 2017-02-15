@@ -89,13 +89,12 @@ class Cuisine(models.Model):
     cuisine_name = models.CharField(
         max_length=500,
     )
-    restaurant = models.ForeignKey(
-        Restaurant, on_delete=models.CASCADE, null=True)
+    restaurant = models.ManyToManyField(Restaurant)
 
     class Meta:
         default_related_name = 'cuisine'
         verbose_name = _('Cuisine')
-        verbose_name_plural = _('Cusines')
+        verbose_name_plural = _('Cuisines')
 
     def __str__(self):
         return self.cuisine_name

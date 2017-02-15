@@ -7,7 +7,7 @@
 <div class="main_container">
     <div class="container">
 	    <div class="row mb50">
-	        <div class="col-sm-7 bgwhite mr20">
+	        <div class="col-sm-8 bgwhite mr20">
 	            {% if form.errors %} {% for error in form.errors %} {% endfor %}
 	            <div class="text-danger">Please correct the error{{ form.errors|pluralize }} below.</div>
 	            {% endif %}
@@ -64,7 +64,7 @@
 			        </div>
 
 			        <div class="form-group row ">
-			           <label for="id_restaurant_name " class="col-sm-3 control-label ">Menu Image:</label>
+			           <label for="id_menu_formset " class="col-sm-3 control-label ">Menu Image:</label>
 			           <div class="col-lg-5 ">
 
 			            {{ menuformset.management_form }}
@@ -89,45 +89,46 @@
 			        </div>
 
 			        <div class="form-group row">
-			           <label for="id_restaurant_name " class="col-sm-3 control-label ">Menu Image:</label>
-			           <div class="col-lg-5 ">
+			           <label for="id_restaurant_timings_formset " class="col-sm-3 control-label nopadding">Restaurant Timings:</label>
+			           <div class="col-sm-9 nopadding">
 
 			            {{ restaurantTimingsformset.management_form }}
 
 					    {% for restaurantTimings in restaurantTimingsformset %}
-					    	<div class="menu-image-formset">
-					            {{ restaurantTimings.working_days }}
-					            {% if restaurantTimings.working_days.errors %}
-					                {% for error in restaurantTimings.working_days.errors %}
-					                    {{ error|escape }}
-					                {% endfor %}
-					            {% endif %}
+					    	<div class="restaurant-timings-formset">
+						    	<div class="col-lg-4 ">
+						            {{ restaurantTimings.working_days }}
+						            {% if restaurantTimings.working_days.errors %}
+						                {% for error in restaurantTimings.working_days.errors %}
+						                    {{ error|escape }}
+						                {% endfor %}
+						            {% endif %}
+						        </div>
+						        <div class="col-lg-4">
+						            {{ restaurantTimings.start_time }}
+						            {% if restaurantTimings.start_time.errors %}
+						                {% for error in restaurantTimings.start_time.errors %}
+						                    {{ error|escape }}
+						                {% endfor %}
+						            {% endif %}
+						        </div>
+						       	<div class="col-lg-4">
+						            {{ restaurantTimings.end_time }}
+						            {% if restaurantTimings.end_time.errors %}
+						                {% for error in restaurantTimings.end_time.errors %}
+						                    {{ error|escape }}
+						                {% endfor %}
+						            {% endif %}
+						        </div>
 					        </div>
 
-					        <div class="menu-image-formset">
-					            {{ restaurantTimings.start_time }}
-					            {% if restaurantTimings.start_time.errors %}
-					                {% for error in restaurantTimings.start_time.errors %}
-					                    {{ error|escape }}
-					                {% endfor %}
-					            {% endif %}
-					        </div>
-
-					       <div class="menu-image-formset">
-					            {{ restaurantTimings.end_time }}
-					            {% if restaurantTimings.end_time.errors %}
-					                {% for error in restaurantTimings.end_time.errors %}
-					                    {{ error|escape }}
-					                {% endfor %}
-					            {% endif %}
-					        </div>
 					    {% endfor %}
 
-					    {% if restaurantTimingsformset.non_form_errors %}
-					        {% for error in restaurantTimingsformset.non_form_errors %}
-					            {{ error|escape }}
-					        {% endfor %}
-					    {% endif %}
+						   {% if restaurantTimingsformset.non_form_errors %}
+						   {% for error in restaurantTimingsformset.non_form_errors %}
+						       {{ error|escape }}
+						   {% endfor %}
+						{% endif %}
 			          </div>
 			        </div>
 
@@ -248,6 +249,79 @@
 			          </div>
 			        </div>
 
+
+
+			        <div class="form-group row {% if form.is_pure_veg.errors %}has-error{% endif %} ">
+			          <label for="id_is_pure_veg" class="col-sm-3 control-label ">Is Pure Veg:</label>
+			          <div class="col-lg-5 ">
+			            {{ form.is_pure_veg }}
+			            {% if form.is_pure_veg.errors %}
+			              <span class="help-block ">
+			                {% for error in form.is_pure_veg.errors %}{{ error }}{% endfor %}
+			              </span>
+			            {% endif %}
+			          </div>
+			        </div>
+
+			        <div class="form-group row {% if form.is_credits_cards_accepted.errors %}has-error{% endif %} ">
+			          <label for="id_is_credits_cards_accepted" class="col-sm-3 control-label ">Is Credits Card Accepted:</label>
+			          <div class="col-lg-5 ">
+			            {{ form.is_credits_cards_accepted }}
+			            {% if form.is_credits_cards_accepted.errors %}
+			              <span class="help-block ">
+			                {% for error in form.is_credits_cards_accepted.errors %}{{ error }}{% endfor %}
+			              </span>
+			            {% endif %}
+			          </div>
+			        </div>
+
+			        <div class="form-group row {% if form.is_buffet_offered.errors %}has-error{% endif %} ">
+			          <label for="id_is_buffet_offered" class="col-sm-3 control-label ">Is Buffet Offered:</label>
+			          <div class="col-lg-5 ">
+			            {{ form.is_buffet_offered }}
+			            {% if form.is_buffet_offered.errors %}
+			              <span class="help-block ">
+			                {% for error in form.is_buffet_offered.errors %}{{ error }}{% endfor %}
+			              </span>
+			            {% endif %}
+			          </div>
+			        </div>
+
+			        <div class="form-group row {% if form.is_wifi_offered.errors %}has-error{% endif %} ">
+			          <label for="id_is_wifi_offered" class="col-sm-3 control-label ">Is Wifi Offered:</label>
+			          <div class="col-lg-5 ">
+			            {{ form.is_wifi_offered }}
+			            {% if form.is_wifi_offered.errors %}
+			              <span class="help-block ">
+			                {% for error in form.is_wifi_offered.errors %}{{ error }}{% endfor %}
+			              </span>
+			            {% endif %}
+			          </div>
+			        </div>	
+
+			        <div class="form-group row {% if form.is_alcohol_served.errors %}has-error{% endif %} ">
+			          <label for="id_is_alcohol_served" class="col-sm-3 control-label ">Is Alcohol Served:</label>
+			          <div class="col-lg-5 ">
+			            {{ form.is_alcohol_served }}
+			            {% if form.is_alcohol_served.errors %}
+			              <span class="help-block ">
+			                {% for error in form.is_alcohol_served.errors %}{{ error }}{% endfor %}
+			              </span>
+			            {% endif %}
+			          </div>
+			        </div>	
+
+			        <div class="form-group row {% if form.has_outdoor_seating.errors %}has-error{% endif %} ">
+			          <label for="id_has_outdoor_seating" class="col-sm-3 control-label ">Has Outdoor Seating:</label>
+			          <div class="col-lg-5 ">
+			            {{ form.has_outdoor_seating }}
+			            {% if form.has_outdoor_seating.errors %}
+			              <span class="help-block ">
+			                {% for error in form.has_outdoor_seating.errors %}{{ error }}{% endfor %}
+			              </span>
+			            {% endif %}
+			          </div>
+			        </div>	
 			        
 			        <div class="form-group row ">
 			          <div class="col-sm-5 col-sm-offset-3 ">
@@ -257,7 +331,7 @@
 			      </form>
 			    </div>
 			</div>
-			<div class="col-sm-4 ui segment bgwhite">
+			<div class="col-sm-3 ui segment bgwhite">
 	            <h3>How it works</h3>
 	            <ul class="ui list">
 	                <li>
