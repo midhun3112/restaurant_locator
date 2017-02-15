@@ -48,7 +48,7 @@ class MenuForm(forms.ModelForm):
 
 
 class RestaurantTimingsForm(forms.ModelForm):
-    working_days = forms.ModelChoiceField(queryset=WeekDay.objects.all(), empty_label="(Nothing)")
+    working_days = forms.ModelChoiceField(queryset=WeekDay.objects.all(), empty_label="(Select Week Day)")
     start_time = forms.TimeField(widget=forms.TimeInput(format='%H:%M'))
     end_time = forms.TimeField(widget=forms.TimeInput(format='%H:%M'))
 

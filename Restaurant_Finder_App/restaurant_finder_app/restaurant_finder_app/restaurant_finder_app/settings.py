@@ -81,10 +81,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
         'NAME': 'restaurant_finder_app_db',
-        'USER': 'midhun_b',#office
-		# 'USER': 'root',#win10
-        'PASSWORD': 'qbctech',#office
-		# 'PASSWORD': 'qbtech#123',#win10
+        # 'USER': 'midhun_b',#office
+		'USER': 'root',#win10
+        # 'PASSWORD': 'qbctech',#office
+		'PASSWORD': 'qbtech#123',#win10
         'HOST': '', # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '', # Set to empty string for default.
     }

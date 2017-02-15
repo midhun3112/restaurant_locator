@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
+{% block css %}
 
+<style>
+    body{
+        background-image: url({{MEDIA_URL}}images/login/login_bg.jpg);
+    }
+  </style>
+  {% endblock %}
 {% block content %}
 
     {% if form.errors %}
@@ -22,7 +29,63 @@
 
     {% endif %}
 
-    <div class="container">
+    <div class="container" style="width:40%; margin-top:100px;">
+<div class="row">
+ <div class="form-horizontal">
+                        <form method="post" action="{% url 'add_restaurant' %}" enctype="multipart/form-data" role="form ">{% csrf_token %}
+    <div style="background:#ff0000; height:45px;">
+        <h3 style="color: white; background: #ff0000;text-align:center; padding:10px;">LOGIN</h3>
+    </div>
+    <div style="height:350px;background:white;">
+        <p style="padding:32px; margin-left: 20px;">Please enter your credentials .</P>
+        <div class="form-group" style="    margin-left: 54px;" method="post" action="{% url 'login' %}">
+            <!-- <label for="usr" style="font-weight:normal;">EMAIL ADDRESS</label>
+            <input type="text" class="form-control"  id="id_email"  placeholder="Enter your email id" style="width:84%">
+            <label for="usr" style="font-weight:normal; padding-top: 10px;">PASSWORD</label>
+            <input type="text" class="form-control" id="usr" id="id_password"  placeholder="Enter your password"style="width:84%"> -->
+
+            <div class="form-group row {% if form.restaurant_image.errors %}has-error{% endif %} ">
+                      <label for="id_restaurant_image " class="col-sm-3 control-label ">Restaurant Image:</label>
+                      <div class="col-lg-5 ">
+                      {{ form.username.as_p}}
+                        {% if form.restaurant_image.errors %}
+                          <span class="help-block ">
+                            {% for error in form.restaurant_image.errors %}{{ error }}{% endfor %}
+                          </span>
+                        {% endif %}
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row {% if form.restaurant_image_thumbnail.errors %}has-error{% endif %} ">
+                      <label for="id_restaurant_image_thumbnail " class="col-sm-3 control-label ">Restaurant Image Thumbnail:</label>
+                      <div class="col-lg-5 ">
+                        {{ form.password.as_p }}
+                        {% if form.restaurant_image_thumbnail.errors %}
+                          <span class="help-block ">
+                            {% for error in form.restaurant_image_thumbnail.errors %}{{ error }}{% endfor %}
+                          </span>
+                        {% endif %}
+                      </div>
+                    </div>
+            
+        </div>
+         <!--<button type="button" class="btn btn-danger" style="font-weight:bold; margin-left:38%; width:20%; background:#ff0000; border-radius:2px;">LOGIN</button>-->
+        <input class="btn btn-danger" type="submit" value="Login" style="font-weight:bold; margin-left:38%; width:20%; background:#ff0000; border-radius:2px;" />
+        <div style="text-align:center; padding:10px;" >
+            <p style="display: inline-block; padding-right:23px;">
+                <a style="color:gray;" href="/authentication/password_reset/">Forgot password?</a>
+            </p>
+            <p style="display: inline-block;">
+                <a style="color:gray;"href="/authentication/register/">New User? Sign</a>
+            </p>
+        </div>
+    </div>
+    </form>
+    </div>
+</div>
+</div>
+
+   <!--  <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
@@ -59,7 +122,7 @@
             </div>
         </div>
     </div>
-
+ -->
 {% endblock %}
 
 {% block javascript %}

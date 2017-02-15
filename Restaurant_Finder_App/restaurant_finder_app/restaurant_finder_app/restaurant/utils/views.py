@@ -111,9 +111,12 @@ def add_restaurant(request):
 
             for restaurantTimings in restaurantTimingsformset:
                 if restaurantTimings.is_valid():
-                    working_days = menuform.cleaned_data.get('working_days')
-                    start_time = menuform.cleaned_data.get('start_time')
-                    end_time = menuform.cleaned_data.get('end_time')
+                    working_days = restaurantTimings.cleaned_data.get('working_days')
+                    start_time = restaurantTimings.cleaned_data.get('start_time')
+                    end_time = restaurantTimings.cleaned_data.get('end_time')
+                    print(working_days)
+                    print(start_time)
+                    print(end_time)
                     timing = RestaurantTiming(
                         restaurant=restaurant, working_days=working_days, start_time=start_time, end_time=end_time)
                     timing.save()
