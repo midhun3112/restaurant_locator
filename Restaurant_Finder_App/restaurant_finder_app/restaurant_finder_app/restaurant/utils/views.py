@@ -7,7 +7,6 @@ from restaurant.utils.forms import AddRestaurantForm, MenuForm, RestaurantTiming
 from django.http import HttpResponseRedirect
 from django.forms import modelformset_factory
 import datetime
-from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 

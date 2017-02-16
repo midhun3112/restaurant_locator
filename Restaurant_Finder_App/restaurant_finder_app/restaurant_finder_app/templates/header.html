@@ -1,9 +1,13 @@
-<head>
+{% extends 'base.html' %} 
 {% load staticfiles %} 
-<script type="text/javascript" src="{% static 'base/js/click.js' %}"></script>
-</head>
+{% block javascript %} <script type="text/javascript" src="{% static 'base/js/click.js' %}"></script>
+{% endblock %} 
+{% block content %}
+
 <div class="" style="height:100px;background:#f9f9f9;">
-    <img src="{{ MEDIA_URL }}images/home/company_logo.jpg" alt="Find the best restaurants, afés, and bars in Kochi" href="/" width="100px" style="display: inline-block;margin-left:50px;">
+<a href="/">
+    <img src="{{ MEDIA_URL }}images/home/company_logo.jpg" alt="Find the best restaurants, afés, and bars in Kochi" width="100px" style="display: inline-block;margin-left:50px;"/>
+    </a>
     <div class="" style="display:inline-block;">
         <form class="navbar-form" role="search" action="{% url 'search' %}" method="get" accept-charset="utf-8">
             <div class="input-group">
@@ -14,36 +18,27 @@
             </div>
         </form>
     </div>
-    <!-- <button type="button" class="btn btn-danger" style="  background:#cb202d; border-radius:5px; display: inline-block;">Search</button> -->
-    {% if user.is_authenticated %}
-    <ul class="nav navbar-nav navbar-right" style="margin-top:35px; margin-left:25%">
+     {% if user.is_authenticated %}
+    <ul class="nav navbar-nav navbar-right" style="margin-top:35px; margin-right:25px">
         <li>
-            <button type="button" class="btn btn-default">Add Restaurant</button>
+            <button type="button" class="btn btn-default"  onclick="addRestaurantClick(true)">Add Restaurant</button>
         </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-            </ul>
-        </li>
-    </ul>
-    <!--     <li class="dropdown" style=" margin-left:25%; border-radius:5px; display: inline-block;">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-            <li class="divider"></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
-    </li> -->
-    {% else %}
-    <ul class="nav navbar-nav navbar-right" style="margin-top:35px; margin-right:40px">
-        <li>
-            <button type="button" class="btn btn-default" onclick="addRestaurantClick()">Add Restaurant</button>
-        </li>
-        <li class="Login">
-            <button type="button" class="btn btn-default "style=" margin-left:45%; border-radius:5px; display: inline-block;" onclick="loginClick()">Login</button>
-        </li>
+        <div class="btn-group" style="margin-left: 5px">
+                      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{user.email}}  <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a href="/authentication/logout">Logout</a></li>
+                      </ul>
+                 </div>
+     {% else %}
+        <!-- <li> -->
+            <button type="button" style="margin-left: 280px" class="btn btn-default" onclick="addRestaurantClick(false)">Add Restaurant</button>
+        <!-- </li> -->
+        <!-- <li class="Login"> -->
+            <button type="button" class="btn btn-primary"  onclick="loginClick()">Login</button>
+        <!-- </li> -->
     </ul>
     {% endif %}
 </div>
+{% endblock %}

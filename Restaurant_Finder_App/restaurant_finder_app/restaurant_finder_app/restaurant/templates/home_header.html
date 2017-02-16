@@ -7,9 +7,23 @@
 	<div class="zimagery-overlay" style="background: rgba(0,0,0,0.4); height:500px;">
 		
 		<div class="row">
-			<header>				
+		<ul class="nav navbar-nav navbar-right" style="margin-top:15px; margin-right:40px">
+			<header>	
+			     {% if user.is_authenticated %}
+			     <div class="btn-group">
+					  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    {{user.email}}  <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu">
+					    <li><a href="/authentication/logout">Logout</a></li>
+					  </ul>
+				 </div>
+ 			     {% else %}
 				<button class="login" type="button" onclick="loginClick()" style="">Log in</button>
+				{% endif %}
+			
 			</header>
+		</ul>
 				<div class="logo--home">
 					<a class="logo--header"  href="/"  style="display: block; title="">
 					<img src="{{ MEDIA_URL }}images/home/company_logo.jpg" alt="Find the best restaurants, cafés, and bars in Kochi" 
