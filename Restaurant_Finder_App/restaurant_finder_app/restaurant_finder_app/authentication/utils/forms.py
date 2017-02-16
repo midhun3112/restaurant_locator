@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.contrib.auth.forms import AuthenticationForm 
+from django.contrib.auth.forms import AuthenticationForm ,PasswordResetForm,SetPasswordForm
 from django import forms
 from authentication.models import User, UserProfile
 from django.utils.translation import gettext as _
@@ -35,8 +35,16 @@ class UserChangeForm(UserChangeForm):
 # If you don't do this you cannot use Bootstrap CSS
 class LoginForm(AuthenticationForm):
     username = forms.EmailField(widget=forms.TextInput(attrs={'required': True, 'max_length': 30, 'placeholder': "Enter your email id", 'style': 'width:84%'}))
-    # password = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password"))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'required': True, 'required': True,'render_value': False, 'placeholder': "Enter your password", 'style': 'width:84%'}))
+
+# If you don't do this you cannot use Bootstrap CSS
+class PasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(widget=forms.TextInput(attrs={'required': True, 'max_length': 30, 'placeholder': "Enter your email id", 'style': 'width:84%'}))
+
+# If you don't do this you cannot use Bootstrap CSS
+class PasswordResetConfirmForm(SetPasswordForm):
+    new_password1 = forms.CharField(widget=forms.PasswordInput(attrs={'required': True, 'required': True,'render_value': False, 'placeholder': "Enter your password", 'style': 'width:84%'}))
+    new_password2 = forms.CharField(widget=forms.PasswordInput(attrs={'required': True, 'required': True,'render_value': False, 'placeholder': "Re-Enter your password", 'style': 'width:84%'}))
 
 class RegistrationForm(forms.Form):
  

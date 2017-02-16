@@ -28,7 +28,7 @@ def register(request):
                 first_name=form.cleaned_data['firstname'],
                 last_name=form.cleaned_data['lastname']
             )
-            return HttpResponseRedirect('/register/success/')
+            return HttpResponseRedirect('/authentication/register/success/')
     # else:
     #     form = RegistrationForm()
 

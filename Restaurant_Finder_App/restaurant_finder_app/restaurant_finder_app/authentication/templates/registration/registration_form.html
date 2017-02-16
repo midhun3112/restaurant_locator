@@ -1,46 +1,81 @@
 {% extends "base.html" %}
 
 {% block title %}User Registration{% endblock %}
-{% block head %}User Registration{% endblock %}
+{% block head %}User Registration{% endblock %} {% block css %}
+<style>
+body {
+    background-image: url({{MEDIA_URL}}images/login/login_bg.jpg);
+}
+</style>
+{% endblock %}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">User Registration</h3>
+
+
+<div class="container" style="width:40%; margin-top:50px;">
+    <div class="row">
+        <div style="background:#ff0000; height:45px;">
+            <h3 style="color: white; background: #ff0000;text-align:center; padding:10px;">REGISTER</h3>
+        </div>
+        <div style="height:500px;background:white;">
+            <p style="padding:32px; margin-left: 20px;">Please enter your credentials .</P>
+            {% if form.errors %}
+            <p style="margin-left: 50px;color: #FF0000"">Your username and password didn't match. Please try again.</p>
+            {% endif %} {% if next %} {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+            {% else %}
+            <p>Please login to see this page.</p>
+            {% endif %} {% endif %}
+            <form method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                <div class="form-group" style="    margin-left: 64px;">
+                    <div class="row">
+                        <label for="usr" style="font-weight:normal;">FIRST NAME</label>
                     </div>
-                    <div class="panel-body">
-                        <form method="post" action="{% url 'register' %}">
-    					{% csrf_token %}
-
-                            <p class="bs-component">
-                                <table>
-                                  {{ form.as_table }}
-                                </table>
-                            </p>
-
-    						<p style="margin-left:114px;">
-    						    <a href="{% url 'password_reset' %}">Forgot password?</a>
-    						</p>
-
-                            <p class="bs-component">
-                                <center>
-                                    <input class="btn btn-success btn-sm" type="submit" value=
-                                    "Register" />
-                                </center>
-                            </p>
-                            <input type="hidden" name="next" value="{{ next }}" />
-
-                        </form>
-                        <p style="margin-left:14px;">
-                               Already a User? Click <a href="{% url 'login' %}">here</a> to go to login page.
-                            </p>
+                    <div class="row">
+                        {{ form.firstname}}
                     </div>
+                    <div class="row">
+                        <label for="usr" style="font-weight:normal; padding-top: 10px;">LAST NAME</label>
+                    </div>
+                    <div class="row">
+                        {{ form.lastname}}
+                    </div>
+
+                                        <div class="row">
+                        <label for="usr" style="font-weight:normal;">EMAIL</label>
+                    </div>
+                    <div class="row">
+                        {{ form.email}}
+                    </div>
+                    <div class="row">
+                        <label for="usr" style="font-weight:normal; padding-top: 10px;">PASSWORD</label>
+                    </div>
+                    <div class="row">
+                        {{ form.password1}}
+                    </div>
+
+                                        <div class="row">
+                        <label for="usr" style="font-weight:normal;">CONFIRM PASSWORD</label>
+                    </div>
+                    <div class="row">
+                        {{ form.password2}}
+                    </div>
+
                 </div>
+                <button type="submit" class="btn btn-danger" style="font-weight:bold; margin-left:38%; width:20%; background:#ff0000; border-radius:2px;">REGISTER</button>
+            </form>
+            <div style="text-align:center; padding:10px;">
+                <p style="display: inline-block; padding-right:23px;">
+                    <a style="color:gray;" href="/authentication/password_reset/">Forgot password?</a>
+                </p>
+                <p style="display: inline-block;">
+                    <a style="color:gray;" href="/authentication/login/">Already Registered? Sign In</a>
+                </p>
             </div>
         </div>
     </div>
+</div>
+
 {% endblock %}
 
 

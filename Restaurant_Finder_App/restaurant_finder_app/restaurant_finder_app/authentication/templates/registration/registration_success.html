@@ -1,9 +1,28 @@
 {% extends "base.html" %}
-{% block title %}Registration Successful{% endblock %}
+{% block title %}Registration Success{% endblock %}
 {% block head %}
- Registration Completed Successfully
+ Registration Success
+{% endblock %} {% block css %}
+<style>
+body {
+    background-image: url('http://10.3.1.12:8000/media/images/login/login_bg.jpg');
+}
+</style>
 {% endblock %}
 {% block content %}
-    Thank you for registering.
-    <a href="/authentication/login">Login</a> 
+
+
+<div class="container" style="width:40%; margin-top:100px;">
+    <div class="row">
+        <div style="background:#ff0000; height:45px;">
+            <h3 style="color: white; background: #ff0000;text-align:center; padding:10px;">Success !!!!</h3>
+        </div>
+        <div style="height:150px;background:white;">
+            <p style="padding:32px;margin-left: 20px; margin-right: 20px;">Registration Success.</P>
+                <div class="form-group" style="    margin-left: 50px;">
+                    Thank you for registering.Click here to <a href="/authentication/login">Login</a> 
+                </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
