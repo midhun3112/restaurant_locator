@@ -192,6 +192,14 @@ h2.ui.header .sub.header {
     margin-top: 5px;
 }
 
+.mt20 {
+    margin-top: 20px;
+}
+
+.pb20 {
+    padding-bottom: 20px;
+}
+
 .mbot-container,
 .pos-relative,
 .relative {

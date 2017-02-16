@@ -3,21 +3,35 @@
 {% block javascript %} <script type="text/javascript" src="{% static 'home/js/click.js' %}"></script>
 {% endblock %} 
 {% block content %}
-<div class="zimagery" style="background-image: url({{MEDIA_URL}}images/home/homepage_cover_image.jpg); background-size: cover; height:360px;">
-	<div class="zimagery-overlay" style="background: rgba(0,0,0,0.4); height:360px;">
+<div class="zimagery" style="background-image: url({{MEDIA_URL}}images/home/homepage_cover_image.jpg); background-size: cover; height:500px;">
+	<div class="zimagery-overlay" style="background: rgba(0,0,0,0.4); height:500px;">
 		
 		<div class="row">
 			<header>				
 				<button class="login" type="button" onclick="loginClick()" style="">Log in</button>
 			</header>
 				<div class="logo--home">
-					<a class="logo--header"  href="/"  style="display: block;"href="#" title="">
+					<a class="logo--header"  href="/"  style="display: block; title="">
 					<img src="{{ MEDIA_URL }}images/home/company_logo.jpg" alt="Find the best restaurants, cafés, and bars in Kochi" 
-					style="width:144px; padding-top:130px;">
+					style="width:144px; padding-top:90px;">
 					</a>
 				</div>
 				<h1 class="h-city-home-title">Find the best restaurants, cafés, and bars in Kochi    </h1>
-		</div>
+<div class="row">
+<div class="col-xs-8 col-xs-offset-3">
+    <form class="navbar-form" role="search" action="{% url 'search' %}" method="get" accept-charset="utf-8">
+        <div class="input-group">
+            <input class="form-control" id="searchbox" style= "width:600px;" name="search_query" type="text" placeholder="Search">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+
+</div>
+
 			
 	</div>
 </div>

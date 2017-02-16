@@ -48,11 +48,11 @@ class PasswordResetConfirmForm(SetPasswordForm):
 
 class RegistrationForm(forms.Form):
  
-    firstname = forms.CharField(widget=forms.TextInput,label=_(u'First name'), required=True)
-    lastname = forms.CharField(widget=forms.TextInput, label=_(u'Last name'), required=True)
-    email = forms.EmailField(widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Email address"))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password"))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Re-enter Password"))
+    firstname = forms.CharField(widget=forms.TextInput(attrs={'required': True, 'max_length': 30, 'placeholder': "Enter your first name", 'style': 'width:84%'}))
+    lastname = forms.CharField(widget=forms.TextInput(attrs={'required': True, 'max_length': 30, 'placeholder': "Enter your last name", 'style': 'width:84%'}))
+    email = forms.EmailField(widget=forms.TextInput(attrs={'required': True, 'max_length': 30, 'placeholder': "Enter your email id", 'style': 'width:84%'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'required': True, 'required': True,'render_value': False, 'placeholder': "Enter your password", 'style': 'width:84%'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'required': True, 'required': True,'render_value': False, 'placeholder': "Re-Enter your password", 'style': 'width:84%'}))
  
     def clean_email(self):
         try:

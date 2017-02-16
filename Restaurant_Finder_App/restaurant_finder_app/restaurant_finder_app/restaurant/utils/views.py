@@ -7,6 +7,7 @@ from restaurant.utils.forms import AddRestaurantForm, MenuForm, RestaurantTiming
 from django.http import HttpResponseRedirect
 from django.forms import modelformset_factory
 import datetime
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -90,7 +91,6 @@ def category_list_view(request, category_id):
 
     context = {'restaurant_list': categories.restaurant.all}
     return render(request, 'restaurant_list.html', context)
-
 
 def add_restaurant(request):
     MenuFormSet = modelformset_factory(

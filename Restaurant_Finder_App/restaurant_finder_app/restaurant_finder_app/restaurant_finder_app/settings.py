@@ -140,6 +140,9 @@ MEDIA_URL = "/media/"
 
 AUTH_USER_MODEL = 'authentication.User'
 
+LOGIN_URL = "/authentication/login"
+
+
 LOGIN_REDIRECT_URL = '/' # It means home view
 
 # Django Suit configuration example
