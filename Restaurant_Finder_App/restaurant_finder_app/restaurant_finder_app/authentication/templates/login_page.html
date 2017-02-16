@@ -1,130 +1,55 @@
-{% extends 'base.html' %}
-{% block css %}
-
+{% extends 'base.html' %} {% block css %}
 <style>
-    body{
-        background-image: url({{MEDIA_URL}}images/login/login_bg.jpg);
-    }
-  </style>
-  {% endblock %}
-{% block content %}
-
-    {% if form.errors %}
-
-        <p>Your username and password didn't match. Please try again.</p>
-
-    {% endif %}
-
-    {% if next %}
-
-    {% if user.is_authenticated %}
-
-        <p>Your account doesn't have access to this page. To proceed,
-        please login with an account that has access.</p>
-        {% else %}
-
-        <p>Please login to see this page.</p>
-
-    {% endif %}
-
-    {% endif %}
-
-    <div class="container" style="width:40%; margin-top:100px;">
-<div class="row">
- <div class="form-horizontal">
-                        <form method="post" action="{% url 'add_restaurant' %}" enctype="multipart/form-data" role="form ">{% csrf_token %}
-    <div style="background:#ff0000; height:45px;">
-        <h3 style="color: white; background: #ff0000;text-align:center; padding:10px;">LOGIN</h3>
-    </div>
-    <div style="height:350px;background:white;">
-        <p style="padding:32px; margin-left: 20px;">Please enter your credentials .</P>
-        <div class="form-group" style="    margin-left: 54px;" method="post" action="{% url 'login' %}">
-            <!-- <label for="usr" style="font-weight:normal;">EMAIL ADDRESS</label>
-            <input type="text" class="form-control"  id="id_email"  placeholder="Enter your email id" style="width:84%">
-            <label for="usr" style="font-weight:normal; padding-top: 10px;">PASSWORD</label>
-            <input type="text" class="form-control" id="usr" id="id_password"  placeholder="Enter your password"style="width:84%"> -->
-
-            <div class="form-group row {% if form.restaurant_image.errors %}has-error{% endif %} ">
-                      <label for="id_restaurant_image " class="col-sm-3 control-label ">Restaurant Image:</label>
-                      <div class="col-lg-5 ">
-                      {{ form.username.as_p}}
-                        {% if form.restaurant_image.errors %}
-                          <span class="help-block ">
-                            {% for error in form.restaurant_image.errors %}{{ error }}{% endfor %}
-                          </span>
-                        {% endif %}
-                      </div>
-                    </div>
-                    
-                    <div class="form-group row {% if form.restaurant_image_thumbnail.errors %}has-error{% endif %} ">
-                      <label for="id_restaurant_image_thumbnail " class="col-sm-3 control-label ">Restaurant Image Thumbnail:</label>
-                      <div class="col-lg-5 ">
-                        {{ form.password.as_p }}
-                        {% if form.restaurant_image_thumbnail.errors %}
-                          <span class="help-block ">
-                            {% for error in form.restaurant_image_thumbnail.errors %}{{ error }}{% endfor %}
-                          </span>
-                        {% endif %}
-                      </div>
-                    </div>
-            
+body {
+    background-image: url({{MEDIA_URL}}images/login/login_bg.jpg);
+}
+</style>
+{% endblock %} {% block content %}
+<div class="container" style="width:40%; margin-top:100px;">
+    <div class="row">
+        <div style="background:#ff0000; height:45px;">
+            <h3 style="color: white; background: #ff0000;text-align:center; padding:10px;">LOGIN</h3>
         </div>
-         <!--<button type="button" class="btn btn-danger" style="font-weight:bold; margin-left:38%; width:20%; background:#ff0000; border-radius:2px;">LOGIN</button>-->
-        <input class="btn btn-danger" type="submit" value="Login" style="font-weight:bold; margin-left:38%; width:20%; background:#ff0000; border-radius:2px;" />
-        <div style="text-align:center; padding:10px;" >
-            <p style="display: inline-block; padding-right:23px;">
-                <a style="color:gray;" href="/authentication/password_reset/">Forgot password?</a>
-            </p>
-            <p style="display: inline-block;">
-                <a style="color:gray;"href="/authentication/register/">New User? Sign</a>
-            </p>
-        </div>
-    </div>
-    </form>
-    </div>
-</div>
-</div>
-
-   <!--  <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
+        <div style="height:350px;background:white;">
+            <p style="padding:32px; margin-left: 20px;">Please enter your credentials .</P>
+            {% if form.errors %}
+            <p style="margin-left: 50px;color: #FF0000"">Your username and password didn't match. Please try again.</p>
+            {% endif %} {% if next %} {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+            {% else %}
+            <p>Please login to see this page.</p>
+            {% endif %} {% endif %}
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-group" style="    margin-left: 64px;">
+                    <div class="row">
+                        <label for="usr" style="font-weight:normal;">EMAIL ADDRESS</label>
                     </div>
-                    <div class="panel-body">
-                        <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-
-                            <p class="bs-component">
-                                <table>
-                                  {{ form.as_table }}
-                                </table>
-                            </p>
-
-    						<p style="margin-left:114px;">
-    						    <a href="{% url 'password_reset' %}">Forgot password?</a>
-    						</p>
-
-                            <p class="bs-component">
-                                <center>
-                                    <input class="btn btn-success btn-sm" type="submit" value="Login" />
-                                </center>
-                            </p>
-                            <input type="hidden" name="next" value="{{ next }}" />
-
-                        </form>
-                        <p style="margin-left:114px;">
-                                <a href="{% url 'register' %}">New User? Sign</a>
-                            </p>
+                    <div class="row">
+                        {{ form.username}}
+                    </div>
+                    <div class="row">
+                        <label for="usr" style="font-weight:normal; padding-top: 10px;">PASSWORD</label>
+                    </div>
+                    <div class="row">
+                        {{ form.password}}
                     </div>
                 </div>
+                <button type="submit" class="btn btn-danger" style="font-weight:bold; margin-left:38%; width:20%; background:#ff0000; border-radius:2px;">LOGIN</button>
+            </form>
+            <div style="text-align:center; padding:10px;">
+                <p style="display: inline-block; padding-right:23px;">
+                    <a style="color:gray;" href="/authentication/password_reset/">Forgot password?</a>
+                </p>
+                <p style="display: inline-block;">
+                    <a style="color:gray;" href="/authentication/register/">New User? Sign</a>
+                </p>
             </div>
         </div>
     </div>
- -->
+</div>
 {% endblock %}
-
+<!-- 
 {% block javascript %}
 
 

@@ -80,7 +80,7 @@
                                             <div class="res-info-group clearfix">
                                                 <div class="res-info-detail">
                                                     <div class="res-info-timings">
-                                                        <div class="clearfix" tabindex="0">
+                                                        <div class="clearfix" >
                                                             <h4 class="mt0 mb5 inlineblock">Opening hours</h4>
                                                             {% if isOpened %}
                                                               <span class="fontsinze5 zgreen">Open today</span>
@@ -103,7 +103,7 @@
                                                                         {% endfor %} {% endwith %}
                                                                     </table>
                                                                 </div>
-                                                                <a  data-toggle="popover" data-placement="bottom" id="see-more"><span class="badge"></span>See more</a>
+                                                                <a tabindex="0" data-trigger="focus"  data-container="body" data-toggle="popover" data-placement="bottom" id="see-more"><span class="badge"></span>See all timings</a>
                                                             </div>
                                                         </div>
                                                     </div>

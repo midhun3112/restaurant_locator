@@ -13,3 +13,7 @@ function categoryClick(category_id) {
 function restaurantClick(restaurant_id) {
     location.href='/restaurant/'+restaurant_id+'/details'
 }
+
+function loginClick() {
+    location.href='/authentication/login'
+}
