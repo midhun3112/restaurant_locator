@@ -5,5 +5,9 @@ $('#phoneNumberModal').on('show.bs.modal', function(event) {
 
     var modal = $(this)
     modal.find('.modal-title').text(restaurant)
-        modal.find('.modal-body input').val(phone_number)
+    modal.find('.modal-body')
+        .html('<p >' +
+          phone_number +
+        '</p>');
+
 })
